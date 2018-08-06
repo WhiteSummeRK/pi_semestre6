@@ -11,6 +11,8 @@ Lucas Borges <br />
   Check-in dos hospedes [ ] <br />
   Check-out dos hospedes [ ] <br /> 
   Cadastro de novos pedidos [ ] <br />
-  fechamento de caixa [ ] <br />
+  Fechamento de caixa [ ] <br />
+  Chat de atendimento (se der tempo) [ ] <br />
+  Implementação com mobile [ ] <br />
   
   
