@@ -1,13 +1,16 @@
 # Membros:
 
-Kauan
-Bruno
-Diogo
-Lucas Lima
-Lucas Borges
+Kauan <br />
+Bruno <br />
+Diogo <br />
+Lucas Lima <br />
+Lucas Borges <br />
 
-# Funcionalidades: 
-  Check-in dos hospedes (x)
-  Check-out dos hospedes (x)
-  Cadastro de novos pedidos (x)
+# Funcionalidades:
+  Criação da base de dados [ ] <br />
+  Check-in dos hospedes [ ] <br />
+  Check-out dos hospedes [ ] <br /> 
+  Cadastro de novos pedidos [ ] <br />
+  fechamento de caixa [ ] <br />
+  
   
