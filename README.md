@@ -1,10 +1,10 @@
 # Membros:
 
-Kauan <br />
-Bruno <br />
-Diogo <br />
-Lucas Lima <br />
-Lucas Borges <br />
+- Kauan Alves <br />
+- Bruno Silva <br />
+- Diogo Silva <br />
+- Lucas Lima <br />
+- Lucas Borges <br />
 
 # Funcionalidades:
  * Criação da base de dados [ ] <br />
