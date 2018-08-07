@@ -1,4 +1,6 @@
-# Membros:
+# Projeto Interdisciplinar 6º Semestre
+
+## Membros:
 
 - Kauan Alves <br />
 - Bruno Silva <br />
@@ -6,7 +8,7 @@
 - Lucas Lima <br />
 - Lucas Borges <br />
 
-# Funcionalidades:
+## Funcionalidades:
  * Criação da base de dados [ ] <br />
  * Criar login [ ] <br />
  * Criar cadastro para hospedes inexistentes [ ] <br /> 
