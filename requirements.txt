@@ -1,2 +1,10 @@
 flask
 sqlalchemy
+Flask-SQLAlchemy
+Flask-Script
+Flask-Migrate
+SQLAlchemy
+requests
+docker
+ipdb
+psycopg2
