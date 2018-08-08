@@ -9,7 +9,7 @@
 - Lucas Borges <br />
 
 ## Funcionalidades:
- * Criação da base de dados [ ] <br />
+ * Criação da base de dados [X] <br />
  * Criar login [ ] <br />
  * Criar cadastro para hospedes inexistentes [ ] <br />
  * Check-in dos hospedes [ ] <br />
