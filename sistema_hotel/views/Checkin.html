@@ -10,10 +10,12 @@
     <title>Check-in</title>
 
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="../assets/css/sidebar.css" rel="stylesheet">
     <script src="../assets/jquery/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/"></script>
     <link href="../assets/css/cards.css" rel="stylesheet">
+    <script src="../assets/js/mostra_menu.js"></script>
+
 
     <!-- Bootstrap 4.0-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -39,78 +41,60 @@
             </div>
         </div>
         <nav class="navbar navbar-dark bg-dark">
-            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
                 <span class="navbar-toggler-icon"></span>
             </a>
         </nav>
-    </div>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="../views/Menu_Principal.html">
-                        Menu Principal
-                    </a>
-                </li>
-                <li>
-                    <a href="../views/Menu_Principal.html">Home</a>
-                </li>
-                <li>
-                    <a href="../views/Checkin.html">Check-in</a>
-                </li>
-                <li>
-                    <a href="../views/Checkout.html">Check-out</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
-                </li>
-                <li>
-                    <a href="#">Logout</a>
-                </li>
-            </ul>
 
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <ul class="sidebar-nav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../views/Menu_Principal.html">Menu Principal</a>
+            <a href="../views/Menu_Principal.html">Home</a>
+            <a href="../views/Checkin.html">Check-in</a>
+            <a href="../views/Checkout.html">Check-out</a>
+            <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+            <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+            <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+            <a href="#">Logout</a>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1 style="color: white">Quartos vazios</h1>
         </div>
-        <div id="page-content-wrapper">
-            <div class="container-fluid" style="text-align: center">
-                <h1 style="color: white">Quartos vazios</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
-                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-                <div class="card-body" style="background-color: white">
-                    <h5 class="card-title">Quarto 1</h5>
-                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
-                </div>
-            </div>
-            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-                <div class="card-body" style="background-color: white">
-                    <h5 class="card-title">Quarto 2</h5>
-                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
-                </div>
-            </div>
-            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-                <div class="card-body" style="background-color: white">
-                    <h5 class="card-title">Quarto 3</h5>
-                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
-                </div>
-            </div>
-            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-                <div class="card-body" style="background-color: white">
-                    <h5 class="card-title">Quarto 4</h5>
-                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
-                </div>
+    </div>
+    <div class="row">
+        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
+            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+            <div class="card-body" style="background-color: white">
+                <h5 class="card-title">Quarto 1</h5>
+                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
             </div>
         </div>
+        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+            <div class="card-body" style="background-color: white">
+                <h5 class="card-title">Quarto 2</h5>
+                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+            </div>
+        </div>
+        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+            <div class="card-body" style="background-color: white">
+                <h5 class="card-title">Quarto 3</h5>
+                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+            </div>
+        </div>
+        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+            <div class="card-body" style="background-color: white">
+                <h5 class="card-title">Quarto 4</h5>
+                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+            </div>
+        </div>
+    </div>
 
     </div>
     <!-- Modal -->

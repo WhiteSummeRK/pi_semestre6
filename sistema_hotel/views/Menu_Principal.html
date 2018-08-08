@@ -10,9 +10,10 @@
     <title>Menu Principal</title>
 
     <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="../assets/css/sidebar.css" rel="stylesheet">
     <script src="../assets/jquery/jquery.min.js"></script>
     <script src="../assets/bootstrap/js/"></script>
+    <script src="../assets/js/mostra_menu.js"></script>
     <style>
         body {
             background-image: url("../assets/img/quarto.jpg");
@@ -20,7 +21,6 @@
             background-size: 100%;
         }
     </style>
-
 </head>
 
 <body>
@@ -32,56 +32,31 @@
             </div>
         </div>
         <nav class="navbar navbar-dark bg-dark">
-            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
                 <span class="navbar-toggler-icon"></span>
             </a>
         </nav>
 
     </div>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="../views/Menu_Principal.html">
-                        Menu Principal
-                    </a>
-                </li>
-                <li>
-                    <a href="../views/Menu_Principal.html">Home</a>
-                </li>
-                <li>
-                    <a href="../views/Checkin.html">Check-in</a>
-                </li>
-                <li>
-                    <a href="../views/Checkout.html">Check-out</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
-                </li>
-                <li>
-                    <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
-                </li>
-                <li>
-                    <a href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
-        <div id="page-content-wrapper">
-            <div class="container-fluid" style="text-align: center">
-                <h1 style="color: white">Serviço de Hotel</h1>
-            </div>
-        </div>
+    <div id="mySidenav" class="sidenav">
+
+        <ul class="sidebar-nav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../views/Menu_Principal.html">Home</a>
+            <a href="../views/Checkin.html">Check-in</a>
+            <a href="../views/Checkout.html">Check-out</a>
+            <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+            <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+            <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+            <a href="#">Logout</a>
+        </ul>
     </div>
 
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1 style="color: white">Serviço de Hotel</h1>
+        </div>
+    </div>
 
 </body>
 
