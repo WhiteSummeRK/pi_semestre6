@@ -1,0 +1,139 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cadastro de Hóspedes</title>
+
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <script src="../assets/jquery/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/"></script>
+    <style>
+        body {
+            background-image: url("../assets/img/cozinha.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="../views/Menu_Principal.html">
+                        Menu Principal
+                    </a>
+                </li>
+                <li>
+                    <a href="../views/Menu_Principal.html">Home</a>
+                </li>
+                <li>
+                    <a href="../views/Checkin.html">Check-in</a>
+                </li>
+                <li>
+                    <a href="../views/Checkout.html">Check-out</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar Pedidos</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="categoria">
+                            <b>Descrição do pedido:</b>
+                        </label>
+                        <div class="form-group">
+                            <input type="text" id="descricao" placeholder="Descrição do pedido" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">
+                                <b>Selecione uma categoria:</b>
+                            </label>
+                            <select class="form-control" id="categoria">
+                                <option>Selecione uma categoria</option>
+                                <option>Bebida</option>
+                                <option>Sobremesa</option>
+                                <option>Massa</option>
+                                <option>Carne</option>
+                                <option>Salada</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria">
+                                <b>Tempo de entrega:</b>
+                            </label>
+                            <select class="form-control" id="categoria">
+                                <option>Selecione o tempo de entrega</option>
+                                <option>5 minutos</option>
+                                <option>15 minutos</option>
+                                <option>25 minutos</option>
+                                <option>35 minutos</option>
+                                <option>45 minutos</option>
+                                <option>60 minutos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                                <label for="categoria">
+                                    <b>Preço R$:</b>
+                                </label>
+                                <div class="form-group">
+                                        <input type="text" id="Preco" placeholder="Preço R$" class="form-control">
+                                    </div>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>

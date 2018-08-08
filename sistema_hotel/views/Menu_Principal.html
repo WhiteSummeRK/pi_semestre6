@@ -1,16 +1,18 @@
 <html>
 
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
     <title>Menu Principal</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="../assets/css/menu_bar.css" rel="stylesheet">
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <script src="../assets/jquery/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/"></script>
     <style>
         body {
             background-image: url("../assets/img/quarto.jpg");
@@ -22,62 +24,65 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-inverse sidebar" id="sidebar-wrapper" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand">Menu Principal</span>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Home
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Check-in
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-circle-arrow-right"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Check-out
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-circle-arrow-left	
-                            "></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Cadastro de Hóspedes
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Cadastro de Pedidos
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cutlery"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Cadastro de Usuários
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">Logout
-                            <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-log-out	
-                            "></span>
-                        </a>
-                    </li>
-                </ul>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
             </div>
         </div>
-    </nav>
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="../views/Menu_Principal.html">
+                        Menu Principal
+                    </a>
+                </li>
+                <li>
+                    <a href="../views/Menu_Principal.html">Home</a>
+                </li>
+                <li>
+                    <a href="../views/Checkin.html">Check-in</a>
+                </li>
+                <li>
+                    <a href="../views/Checkout.html">Check-out</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid" style="text-align: center">
+                <h1 style="color: white">Serviço de Hotel</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
 </body>
-<html>
+
+</html>

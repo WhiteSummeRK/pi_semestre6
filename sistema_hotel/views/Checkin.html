@@ -1,0 +1,180 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Check-in</title>
+
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <script src="../assets/jquery/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/"></script>
+    <link href="../assets/css/cards.css" rel="stylesheet">
+
+    <!-- Bootstrap 4.0-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background-image: url("../assets/img/recepcao.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="menu">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="../views/Menu_Principal.html">
+                        Menu Principal
+                    </a>
+                </li>
+                <li>
+                    <a href="../views/Menu_Principal.html">Home</a>
+                </li>
+                <li>
+                    <a href="../views/Checkin.html">Check-in</a>
+                </li>
+                <li>
+                    <a href="../views/Checkout.html">Check-out</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+                </li>
+                <li>
+                    <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+                </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid" style="text-align: center">
+                <h1 style="color: white">Quartos vazios</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
+                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+                <div class="card-body" style="background-color: white">
+                    <h5 class="card-title">Quarto 1</h5>
+                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+                </div>
+            </div>
+            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+                <div class="card-body" style="background-color: white">
+                    <h5 class="card-title">Quarto 2</h5>
+                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+                </div>
+            </div>
+            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+                <div class="card-body" style="background-color: white">
+                    <h5 class="card-title">Quarto 3</h5>
+                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+                </div>
+            </div>
+            <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
+                <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+                <div class="card-body" style="background-color: white">
+                    <h5 class="card-title">Quarto 4</h5>
+                    <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-in</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Modal -->
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Fazer Check-in</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="hospede">
+                                <b>Selecione um Hóspede:</b>
+                            </label>
+                            <select class="form-control" id="hospede">
+                                <option>Selecione um Hóspede</option>
+                                <option>Hóspede 1</option>
+                                <option>Hóspede 2</option>
+                                <option>Hóspede 3</option>
+                                <option>Hóspede 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkin" class="col-form-label">
+                                <b>Cadastrar novo hóspede:</b>
+                            </label>
+                            <br>
+                            <a type="button" href="../views/Cadastro_Hospede.html" class="btn btn-primary">Novo</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkin" class="col-form-label">
+                                <b>Check-in:</b>
+                            </label>
+                            <input type="datetime-local" class="form-control" id="checkin">
+                        </div>
+                        <div class="form-group">
+                            <label for="chekout" class="col-form-label">
+                                <b>Check-out:</b>
+                            </label>
+                            <input type="datetime-local" class="form-control" id="checkout">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Finalizar Check-in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>
