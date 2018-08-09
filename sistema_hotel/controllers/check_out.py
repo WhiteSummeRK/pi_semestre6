@@ -8,9 +8,9 @@ from flask import (
     url_for
 )
 
-app = Blueprint('login', __name__)
+app = Blueprint('checkout', __name__)
 
 
 @app.route('/', methods=['GET'])
 def view():
-    return render_template('Menu_Principal.html')
+    return render_template('Checkout.html')
