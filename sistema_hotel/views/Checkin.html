@@ -9,13 +9,7 @@
 
     <title>Check-in</title>
 
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/sidebar.css" rel="stylesheet">
-    <script src="../assets/jquery/jquery.min.js"></script>
-    <script src="../assets/bootstrap/js/"></script>
-    <link href="../assets/css/cards.css" rel="stylesheet">
-    <script src="../assets/js/mostra_menu.js"></script>
-
+    {% include 'components/base.html' %}
 
     <!-- Bootstrap 4.0-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -47,18 +41,9 @@
         </nav>
 
     </div>
-    <div id="mySidenav" class="sidenav">
-        <ul class="sidebar-nav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="/">Home</a>
-            <a href="/check_in">Check-in</a>
-            <a href="/check_out">Check-out</a>
-            <a href="/cadastro_usuarios">Cadastro de Hóspedes</a>
-            <a href="/cadastro_pedidos">Cadastro de Pedidos</a>
-            <a href="/cadastro_hospede">Cadastro de Usuários</a>
-            <a href="#">Logout</a>
-        </ul>
-    </div>
+
+    {% include 'components/side_bar.html' %}
+
     <div id="page-content-wrapper">
         <div class="container-fluid" style="text-align: center">
             <h1 style="color: white">Quartos vazios</h1>

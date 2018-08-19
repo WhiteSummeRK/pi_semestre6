@@ -1,5 +1,5 @@
 # COMANDO PARA CRIAR O CONTAINER:
-# sudo docker run -p 5432:5432 --name={NOME_DO_CONTAINER} -v {NOME_PARA_O_VOLUME}:/var/lib/postgresql/data {ID_IMAGEM}
+# sudo docker run --publish-all=true --name={NOME_DO_CONTAINER} -v {NOME_PARA_O_VOLUME}:/var/lib/postgresql/data {ID_IMAGEM}
 
 FROM postgres:latest
 
