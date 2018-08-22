@@ -34,19 +34,20 @@ class User(db.Model):
 
     __tablename__ = 'user'
 
-    id_user = Column(Integer, primary_key=True, unique=True)
+    id = Column(Integer, primary_key=True,
+                unique=True, autoincrement=True)
     username = Column(String(255), nullable=False)
     pwd = Column(String(255), nullable=False)
     name = Column(String(255), nullable=False)
-    permission = Column(String(255), nullable=False)
+    is_adm = Column(Boolean, nullable=False)
     activity = Column(Boolean, default=True, primary_key=True)
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'User(id_user={}, username={}, \
+        return 'User(id={}, username={}, \
                 pwd={}, name={}, \expenses_value, \
                 permission={}, activity={})'.format(
-                     self.id_user,
+                     self.id,
                      self.username,
                      self.pwd,
                      self.name,
@@ -59,20 +60,21 @@ class Resident(db.Model):
     """Tabela de Hospedes."""
 
     __tablename__ = 'resident'
-    __table_args__ = (UniqueConstraint('id_user'),)
+    __table_args__ = (UniqueConstraint('id'),)
 
-    id_resident = Column(Integer, primary_key=True, unique=True)
-    id_user = Column(Integer, ForeignKey('user.id_user'))
+    id_resident = Column(Integer, primary_key=True,
+                         unique=True, autoincrement=True)
+    id = Column(Integer, ForeignKey('user.id'))
     name = Column(String(255), nullable=False)
     cpf = Column(String(11), nullable=False)
     phone = Column(String(11), nullable=False)
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'Resident(id_resident={}, id_user={}, \
+        return 'Resident(id_resident={}, id={}, \
                 name={}, cpf={}, phone={}'.format(
                      self.id_resident,
-                     self.id_user,
+                     self.id,
                      self.name,
                      self.cpf,
                      self.phone
@@ -84,7 +86,8 @@ class Category(db.Model):
 
     __tablename__ = 'category'
 
-    id_category = Column(Integer, primary_key=True, unique=True)
+    id_category = Column(Integer, primary_key=True,
+                         unique=True, autoincrement=True)
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=False)
 
@@ -99,7 +102,8 @@ class ResidentAccount(db.Model):
 
     __tablename__ = 'resident_account'
 
-    id_account = Column(Integer, primary_key=True, unique=True)
+    id_account = Column(Integer, primary_key=True,
+                        unique=True, autoincrement=True)
     id_resident = Column(Integer, ForeignKey('resident.id_resident'))
     openned = Column(DateTime, default='0000-00-00', nullable=False)
     closed = Column(DateTime, default='0000-00-00', nullable=False)
@@ -124,8 +128,9 @@ class Employee(db.Model):
 
     __tablename__ = "employee"
 
-    id_employee = Column(Integer, primary_key=True, unique=True)
-    id_user = Column(Integer, ForeignKey('user.id_user'))
+    id_employee = Column(Integer, primary_key=True,
+                         unique=True, autoincrement=True)
+    id = Column(Integer, ForeignKey('user.id'))
     nome = Column(String(255), nullable=False)
     cpf = Column(String(11), nullable=False)
     cargo = Column(String(255), nullable=False)
@@ -133,10 +138,10 @@ class Employee(db.Model):
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'Employee(id_employee={}, id_user={}, \
+        return 'Employee(id_employee={}, id={}, \
                 nome={}, cpf={}, cargo={}, setor={})'.format(
                     self.id_employee,
-                    self.id_user,
+                    self.id,
                     self.nome,
                     self.cpf,
                     self.cargo,
@@ -149,7 +154,8 @@ class Room(db.Model):
 
     __tablename__ = 'room'
 
-    id_room = Column(Integer, primary_key=True, unique=True)
+    id_room = Column(Integer, primary_key=True,
+                     unique=True, autoincrement=True)
     number = Column(Integer, nullable=False)
     floor = Column(Integer, nullable=False)
     description = Column(String(255), nullable=False)
@@ -174,7 +180,8 @@ class Service(db.Model):
 
     __tablename__ = 'service'
 
-    id_service = Column(Integer, primary_key=True, unique=True)
+    id_service = Column(Integer, primary_key=True,
+                        unique=True, autoincrement=True)
     id_category = Column(Integer, ForeignKey('category.id_category'))
     id_employee = Column(Integer, ForeignKey('employee.id_employee'))
     name = Column(String(255), nullable=False)
@@ -199,7 +206,8 @@ class Accommodation(db.Model):
 
     __tablename__ = "accommodation"
 
-    id_accommodation = Column(Integer, primary_key=True, unique=True)
+    id_accommodation = Column(Integer, primary_key=True,
+                              unique=True, autoincrement=True)
     id_room = Column(Integer, ForeignKey('room.id_room'))
     id_resident = Column(Integer, ForeignKey('resident.id_resident'))
     date_entrance = Column(DateTime, default='0000-00-00', nullable=False)
@@ -227,7 +235,8 @@ class Order(db.Model):
 
     __tablename__ = "order"
 
-    id_order = Column(Integer, primary_key=True, unique=True)
+    id_order = Column(Integer, primary_key=True,
+                      unique=True, autoincrement=True)
     id_resident = Column(Integer, ForeignKey('resident.id_resident'))
     id_room = Column(Integer, ForeignKey('room.id_room'))
     date = Column(DateTime, default='0000-00-00', nullable=False)
@@ -252,7 +261,8 @@ class ItemOrder(db.Model):
 
     __tablename__ = "item_order"
 
-    id_item_order = Column(Integer, primary_key=True, unique=True)
+    id_item_order = Column(Integer, primary_key=True,
+                           unique=True, autoincrement=True)
     id_order = Column(Integer, ForeignKey('order.id_order'))
     id_service = Column(Integer, ForeignKey('service.id_service'))
     id_employee = Column(Integer, ForeignKey('employee.id_employee'))
