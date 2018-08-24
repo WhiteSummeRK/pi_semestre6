@@ -36,3 +36,22 @@ docker rmi -f $(docker images -q -a)
 docker build . -t sistema_hotel
 docker run -p 5432:5432 --name="sistema_hotel" -v local_hotel:/var/lib/postgresql/data sistema_hotel
 ```
+
+### Comandos para o banco de dados (Após a criação do container)
+
+#### Para executar as migrações (Criar tabelas)
+```sh
+python migrations.py db init
+python migrations.py db migrate
+python migrations.py db upgrade
+```
+
+#### Para inserir os dados iniciais 
+```sh
+python manage.py insertions
+```
+
+#### Para iniciar o servidor 
+```sh
+python manage.py runserver
+```
