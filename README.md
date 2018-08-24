@@ -10,7 +10,7 @@
 
 ## Funcionalidades:
  * Criação da base de dados [X] <br />
- * Criar login [ ] <br />
+ * Criar login [X] <br />
  * Criar cadastro para hospedes inexistentes [ ] <br />
  * Check-in dos hospedes [ ] <br />
  * Check-out dos hospedes [ ] <br />
