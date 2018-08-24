@@ -1,4 +1,6 @@
 <div class="container" align="center" style="margin-top: 10%;">
+{% include 'components/toastr_base.html' %}
+{% include 'components/base.html'%}
 <div class="login-form">
 <div class="main-div">
     <div class="panel">
@@ -7,16 +9,41 @@
    </div>
     <form name="login" action="/" method="post">
         <div class="form-group">
-            <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="pwd" placeholder="Password">
+            <input type="password" class="form-control" name="pwd" placeholder="Password" required>
         </div>
         <div class="forgot">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" id="login_btn">Login</button>
     </form>
     </div>
 </div>
+<script>
+var error_handler = () =>{
+  if({{login_error}} == true){
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-right",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+}
+    toastr.error('Login ou Senha Incorretos!')
+  }
+}
+document.getElementById('login_btn').addEventListener('click', error_handler())
+</script>
 </div>
 </div>

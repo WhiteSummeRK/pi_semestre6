@@ -11,3 +11,13 @@ def insert_users():
     )
     session.add(kauan)
     session.commit()
+
+    hospede01 = User(
+        username='Hospede01',
+        pwd='123',
+        name='Hospede 01',
+        is_adm=False,
+        activity=False
+    )
+    session.add(hospede01)
+    session.commit()
