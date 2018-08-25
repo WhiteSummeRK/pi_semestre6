@@ -6,9 +6,8 @@ def query_user(*, username: str, pwd: str):
     return session.query(User)\
         .filter_by(username=username, pwd=pwd).first()
 
-def save_resident(*, user_id: int, name: str, rg: str, cpf: str, phone: str):
+def save_resident(*, name: str, rg: str, cpf: str, phone: str):
     resident = Resident(
-        user_id=user_id,
         name=name,
         rg=rg,
         cpf=cpf,

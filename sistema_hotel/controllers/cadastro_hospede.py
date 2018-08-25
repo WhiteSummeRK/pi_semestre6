@@ -7,6 +7,7 @@ from flask import (
     session,
     url_for
 )
+from sistema_hotel.models.db_functions import save_resident
 
 app = Blueprint('cadastro_hospede', __name__)
 
@@ -22,3 +23,9 @@ def post_view():
     rg = request.form.get('rg')
     cpf = request.form.get('cpf')
     phone = request.form.get('phone')
+
+    try:
+        save_resident(name=name, rg=rg, cpf=cpf, phone=phone)
+        return render_template('cadastro_hospede.html', insertion_code=201)
+    except Exception:
+        return render_template('cadastro_hospede.html', insertion_code=500)

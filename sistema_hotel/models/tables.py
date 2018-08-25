@@ -60,22 +60,19 @@ class Resident(db.Model):
     """Tabela de Hospedes."""
 
     __tablename__ = 'resident'
-    __table_args__ = (UniqueConstraint('id'),)
 
     id_resident = Column(Integer, primary_key=True,
                          unique=True, autoincrement=True)
-    id = Column(Integer, ForeignKey('user.id'))
     name = Column(String(255), nullable=False)
-    rg = Column(String(255), nullable=False)
+    rg = Column(String(9), nullable=False)
     cpf = Column(String(11), nullable=False)
     phone = Column(String(11), nullable=False)
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'Resident(id_resident={}, id={}, \
+        return 'Resident(id_resident={}, \
                 name={}, rg={}, cpf={}, phone={}'.format(
                      self.id_resident,
-                     self.id,
                      self.name,
                      self.rg,
                      self.cpf,

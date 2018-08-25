@@ -36,6 +36,7 @@
     </div>
 
       {% include 'components/side_bar.html' %}
+      {% include 'components/toastr_base.html' %}
 
     <div id="page-content-wrapper">
             <div class="container-fluid" style="text-align: center">
@@ -49,27 +50,56 @@
                     <h5 class="modal-title" id="exampleModalLabel">Cadastrar Hóspede</h5>
                 </div>
                 <div class="modal-body">
-                    <form action='/cadastro_hospede', method='post'>
+                    <form action='/cadastro_hospede/' method='post'>
                         <div class="form-group">
                             <input type="text" name="nome" placeholder="Nome do Hóspede" class="form-control" require>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="rg" placeholder="RG" class="form-control" require>
+                            <input type="text" name="rg" placeholder="RG" class="form-control" maxlength="9" require>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="cpf" placeholder="CPF" class="form-control" require>
+                            <input type="text" name="cpf" placeholder="CPF" class="form-control" maxlength="11" require>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" placeholder="Telefone" class="form-control" require>
+                            <input type="text" name="phone" placeholder="Telefone" class="form-control" maxlength="11" require>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="cadastro_btn">Cadastrar</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Cadastrar</button>
-                </div>
+
             </div>
         </div>
     </div>
+<script>
+var error_handler = () =>{
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+  if({{insertion_code}} == 201){
+    toastr.success('Hospede criado com sucesso!')
+  }
+  else{
+    toastr.error('Hospede não foi inserido, Contate o admnistrador')
+  }
+}
+document.getElementById('cadastro_btn').addEventListener('click', error_handler())
+</script>
 </body>
 
 </html>
