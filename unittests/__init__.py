@@ -1,6 +1,7 @@
 import unittest
 import requests
 import json
+
 class TestStringMethods(unittest.TestCase):
 
     def test_sucessful_login(self):
