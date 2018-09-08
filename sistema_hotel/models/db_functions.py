@@ -1,4 +1,4 @@
-from sistema_hotel.models.tables import session, User, Resident
+from sistema_hotel.models.tables import session, User, Resident, Room
 
 
 def query_user(*, username: str, pwd: str):
@@ -15,3 +15,13 @@ def save_resident(*, name: str, rg: str, cpf: str, phone: str):
     )
     session.add(resident)
     session.commit()
+
+def query_all_residents():
+    return session.query(Resident).all()
+
+def query_all_rooms():
+    return session.query(Room).all()
+
+def update_room_state(room_number, updade_to):
+    update(Room).where(number=room_number).\
+        values(status=updade_to)
