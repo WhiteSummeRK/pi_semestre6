@@ -13,6 +13,8 @@ def services():
     service = query_services_names()
     for item in service:
         result.update(
-            {item.id_service: {'id_employee': item.id_employee, 'name': item.name, 'description': item.description}})
+            {item.id_service: {'id_employee': item.id_employee,
+                               'name': item.name, 'description':
+                                   item.description,'value':item.value}})
     return jsonify(result)
 

@@ -2,6 +2,8 @@
 from flask import Flask
 
 from .controllers.login import app as login
+from .controllers.mobile_api_services import app as Service
+
 from .controllers.check_out import app as check_out
 from .controllers.check_in import app as check_in
 
@@ -14,7 +16,7 @@ app = Flask(__name__, template_folder='views', static_folder='assets')
 
 app.register_blueprint(login, url_prefix='/')
 app.register_blueprint(login, url_prefix='/api_login')
-
+app.register_blueprint(Service, url_prefix='/')
 app.register_blueprint(check_out, url_prefix='/check_out')
 app.register_blueprint(check_in, url_prefix='/check_in')
 app.register_blueprint(cadastro_usuarios, url_prefix='/cadastro_usuarios')
