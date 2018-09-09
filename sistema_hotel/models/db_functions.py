@@ -1,10 +1,14 @@
-from sistema_hotel.models.tables import session, User, Resident, Room
+from sistema_hotel.models.tables import session, User, Resident, Room, Service
 
 
 def query_user(*, username: str, pwd: str):
     """Busca usuarios no banco de dados através do nome e senha"""
     return session.query(User)\
         .filter_by(username=username, pwd=pwd).first()
+
+def query_services_names():
+    """Retorna dados dos serviços cadastradps"""
+    return session.query(Service).all()
 
 def save_resident(*, name: str, rg: str, cpf: str, phone: str):
     resident = Resident(

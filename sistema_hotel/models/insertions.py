@@ -1,4 +1,5 @@
-from sistema_hotel.models.tables import session, User, Room
+from sistema_hotel.models.tables import session, User, Room, Service, \
+    Category, Employee, Order, Resident
 
 
 def insert_users():
@@ -21,6 +22,7 @@ def insert_users():
     )
     session.add(hospede01)
     session.commit()
+
 
 def insert_rooms():
     room1 = Room(
@@ -54,4 +56,60 @@ def insert_rooms():
     )
 
     session.add(room3)
+    session.commit()
+
+
+def insert_services():
+    service = Service(
+        id_category=1,
+        id_employee=1,
+        name='coca cola',
+        description='beba uma cocacola e seja feliz para sempre',
+        value=500
+    )
+
+    session.add(service)
+    session.commit()
+
+
+def insert_category():
+    category = Category(
+        name='comida',
+        description='nada além disso, estamos todos com fome, então vamos comer'
+    )
+    session.add(category)
+    session.commit()
+
+
+def insert_employee():
+    employe = Employee(
+        nome='Jaime Ossada',
+        cpf='4605552220',
+        cargo='Cozinheiro',
+        setor='Cozinha'
+    )
+    session.add(employe)
+    session.commit()
+
+
+def insert_order():
+    order = Order(
+        id_resident=1,
+        id_room=1,
+        date='2018-05-12',
+        status='a',
+        total_value='1000'
+    )
+    session.add(order)
+    session.commit()
+
+
+def insert_resident():
+    resident = Resident(
+        name='Kauan',
+        rg='45646545',
+        cpf='123132',
+        phone='465465'
+    )
+    session.add(resident)
     session.commit()
