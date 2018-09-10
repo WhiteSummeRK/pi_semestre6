@@ -104,6 +104,7 @@ class ResidentAccount(db.Model):
     id_account = Column(Integer, primary_key=True,
                         unique=True, autoincrement=True)
     id_resident = Column(Integer, ForeignKey('resident.id_resident'))
+    id_room = Column(Integer, ForeignKey('room.id_room'))
     openned = Column(DateTime, default='0000-00-00', nullable=False)
     closed = Column(DateTime, default='0000-00-00', nullable=False)
     status = Column(String(255), nullable=False)
@@ -197,35 +198,6 @@ class Service(db.Model):
                     self.name,
                     self.description,
                     self.value
-                )
-
-
-class Accommodation(db.Model):
-    """Tabela de Hospedagem."""
-
-    __tablename__ = "accommodation"
-
-    id_accommodation = Column(Integer, primary_key=True,
-                              unique=True, autoincrement=True)
-    id_room = Column(Integer, ForeignKey('room.id_room'))
-    id_resident = Column(Integer, ForeignKey('resident.id_resident'))
-    date_entrance = Column(DateTime, default='0000-00-00', nullable=False)
-    date_leave = Column(DateTime, default='0000-00-00', nullable=False)
-    observation = Column(String(255), nullable=False)
-    expenses_value = Column(Float, nullable=False)
-
-    def __repr__(self):
-        """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'Accommodation(id_accommodation={}, id_room={}, \
-                id_resident={}, date_entrance={}, date_leave={}, \
-                observation={}, expenses_value={})'.format(
-                    self.id_accommodation,
-                    self.id_room,
-                    self.id_resident,
-                    self.date_entrance,
-                    self.date_leave,
-                    self.observation,
-                    self.expenses_value
                 )
 
 

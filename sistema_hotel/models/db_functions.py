@@ -1,4 +1,5 @@
 from sistema_hotel.models.tables import session, User, Resident, Room, Service
+from sqlalchemy import update
 
 
 def query_user(*, username: str, pwd: str):
@@ -27,5 +28,7 @@ def query_all_rooms():
     return session.query(Room).all()
 
 def update_room_state(room_number, updade_to):
-    update(Room).where(number=room_number).\
+    room_state = update(Room).where(Room.number==room_number).\
         values(status=updade_to)
+    session.execute(room_state)
+    session.commit()
