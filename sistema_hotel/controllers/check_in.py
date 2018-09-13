@@ -31,6 +31,6 @@ def post_checkin():
     resident = request.form.get('resident')
     checkin_date = request.form.get('checkin')
     checkout_date = request.form.get('checkout')
-    update_room_state(10, 'Ocupado')
+    update_room_state(request.form.get('fake_input'), 'Ocupado')
 
     return redirect(url_for('checkin.view'))

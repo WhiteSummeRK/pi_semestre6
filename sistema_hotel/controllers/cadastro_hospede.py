@@ -26,6 +26,6 @@ def post_view():
 
     try:
         save_resident(name=name, rg=rg, cpf=cpf, phone=phone)
-        return render_template('cadastro_hospede.html', insertion_code=201)
+        return render_template('Cadastro_Hospede.html', insertion_code=201)
     except Exception:
-        return render_template('cadastro_hospede.html', insertion_code=500)
+        return render_template('Cadastro_Hospede.html', insertion_code=500)
