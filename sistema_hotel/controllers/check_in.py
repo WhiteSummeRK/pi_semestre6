@@ -8,6 +8,9 @@ from flask import (
     url_for
 )
 from sistema_hotel.models.db_functions import (query_all_residents,
+                                               query_resident_by_name,
+                                               query_room_by_room_number,
+                                               create_new_account,
                                                query_all_rooms,
                                                update_room_state)
 
@@ -28,9 +31,21 @@ def view():
 
 @app.route('/', methods=['POST'])
 def post_checkin():
-    resident = request.form.get('resident')
+    resident_name = request.form.get('resident')
     checkin_date = request.form.get('checkin')
     checkout_date = request.form.get('checkout')
-    update_room_state(request.form.get('fake_input'), 'Ocupado')
+    room_number = request.form.get('fake_input')
+
+    update_room_state(room_number, 'Ocupado')
+
+    resident = query_resident_by_name(resident_name)
+    new_account = create_new_account(
+        resident=resident,
+        room=query_room_by_room_number(room_number),
+        openned=checkin_date,
+        closed=checkout_date,
+        status='Não pago',
+        value=00.00
+    )
 
     return redirect(url_for('checkin.view'))

@@ -49,40 +49,23 @@
         </div>
     </div>
     <div class="row">
+      {% for item in rooms %}
         <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
-            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
+            <img class="card-img-top" src="../assets/img/quarto.jpg">
             <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto 5</h5>
-                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
+                <h5 class="card-title">Quarto Nº {{item}}</h5>
+                <button href="#" id="teste" data-id="{{item}}" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
             </div>
         </div>
-        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-            <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto 6</h5>
-                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
-            </div>
-        </div>
-        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-            <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto 7</h5>
-                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
-            </div>
-        </div>
-        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px">
-            <img class="card-img-top" src="../assets/img/quarto.jpg" alt="Card image cap">
-            <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto 8</h5>
-                <button href="#" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
-            </div>
-        </div>
+      {% endfor %}
     </div>
     <!-- Modal -->
 
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
+              <form action='/check_out/' method='POST'>
+                <input type='hidden' name='fake_input' id='fake_input'>
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Fazer Check-out</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -112,11 +95,22 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Fazer Check-out</button>
+                    <button type="submit" class="btn btn-primary">Fazer Check-out</button>
                 </div>
+            <form>
             </div>
         </div>
     </div>
+<script>
+    var buttons = document.querySelectorAll("#teste")
+
+    buttons.forEach(function(item){
+      item.addEventListener('click', function(){
+        document.getElementById("fake_input").value = $(this).attr("data-id")
+        console.log(document.getElementById("fake_input").value)
+      })
+    })
+</script>
 
 </body>
 
