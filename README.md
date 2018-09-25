@@ -46,12 +46,12 @@ python migrations.py db migrate
 python migrations.py db upgrade
 ```
 
-#### Para inserir os dados iniciais 
+#### Para inserir os dados iniciais
 ```sh
 python manage.py insertions
 ```
 
-#### Para iniciar o servidor 
+#### Para iniciar o servidor
 ```sh
 python manage.py runserver
 ```

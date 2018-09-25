@@ -53,8 +53,8 @@
         <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
             <img class="card-img-top" src="../assets/img/quarto.jpg">
             <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto Nº {{item}}</h5>
-                <button href="#" id="teste" data-id="{{item}}" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
+                <h5 class="card-title">Quarto Nº {{item.number}}</h5>
+                <button href="#" id="teste" data-id="{{item.number}}" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
             </div>
         </div>
       {% endfor %}

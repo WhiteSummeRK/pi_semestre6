@@ -35,8 +35,8 @@ def query_room_by_room_number(room_number):
 
 def create_new_account(*, resident, room, openned, closed, status, value):
     account = ResidentAccount(
-    id_resident=resident,
-    id_room=room,
+    id_resident=resident.id_resident,
+    id_room=room.id_room,
     openned=openned,
     closed=closed,
     status=status,
@@ -52,6 +52,12 @@ def update_room_state(room_number, updade_to):
     session.execute(room_state)
     session.commit()
 
+def query_all_resident_accounts():
+    return session.query(ResidentAccount).all()
+
+def query_room_by_id(room_id):
+    return session.query(Room).first()
+
 def query_resident_by_room(room_number, resident_name):
     room = query_room_by_room_number(room_number)
     resident = query_resident_by_name(resident_name)
@@ -59,3 +65,6 @@ def query_resident_by_room(room_number, resident_name):
     user = session.query(ResidentAccount).filter_by(id_resident=resident.id_resident,
                                                     id_room=room.id_room).first()
     return user
+
+def query_resident_by_id(id):
+    return session.query(Resident).filter_by(id_resident=id).first()

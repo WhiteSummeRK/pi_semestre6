@@ -105,8 +105,8 @@ class ResidentAccount(db.Model):
                         unique=True, autoincrement=True)
     id_resident = Column(Integer, ForeignKey('resident.id_resident'))
     id_room = Column(Integer, ForeignKey('room.id_room'))
-    openned = Column(DateTime, default='0000-00-00', nullable=False)
-    closed = Column(DateTime, default='0000-00-00', nullable=False)
+    openned = Column(DateTime, nullable=False)
+    closed = Column(DateTime, nullable=False)
     status = Column(String(255), nullable=False)
     value = Column(Float, nullable=False)
 

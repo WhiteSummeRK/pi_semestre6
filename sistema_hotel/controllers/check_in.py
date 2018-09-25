@@ -1,4 +1,5 @@
 """Modulo para as rotas de login."""
+from datetime import datetime
 from flask import (
     Blueprint,
     redirect,
@@ -29,6 +30,7 @@ def view():
                            residents=residents_name,
                            rooms=rooms)
 
+
 @app.route('/', methods=['POST'])
 def post_checkin():
     resident_name = request.form.get('resident')
@@ -42,10 +44,10 @@ def post_checkin():
     new_account = create_new_account(
         resident=resident,
         room=query_room_by_room_number(room_number),
-        openned=checkin_date,
-        closed=checkout_date,
+        openned=datetime.now(),
+        closed=datetime.now(),
         status='Não pago',
-        value=00.00
+        value=0.0
     )
 
     return redirect(url_for('checkin.view'))
