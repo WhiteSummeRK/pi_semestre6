@@ -19,7 +19,7 @@
  * Chat de atendimento (se der tempo) [ ] <br />
  * Implementação com mobile [ ] <br />
 
-## Como subir a Aplicação:
+## Como Iniciar a Aplicação:
 
 Antes de tudo, você deve instalar as dependencias do projeto, sugere-se criar um ambiente virtual antes, para isso execute o comando de instalação do pipenv:
 ```sh
@@ -63,6 +63,7 @@ python migrations.py db init
 python migrations.py db migrate
 python migrations.py db upgrade
 ```
+O comando "python migrations.py db init" poderá disparar um erro dizendo que a pasta migrations ja existe no projeto. caso haja alguma mudança nas tabelas do banco de dados, sugere-se excluir essa pasta e executar os comandos novamente... caso contrário, pode-se ignorar esse erro.
 
 #### Para inserir os dados iniciais no BD
 ```sh
