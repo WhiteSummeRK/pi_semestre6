@@ -1,0 +1,88 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cadastro de Quartos</title>
+
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/sidebar.css" rel="stylesheet">
+    <script src="../assets/jquery/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/"></script>
+    <script src="../assets/js/mostra_menu.js"></script>
+
+
+    <style>
+        body {
+            background-image: url("../assets/img/hotel.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+    </div>
+    <div id="mySidenav" class="sidenav">
+        <ul class="sidebar-nav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="../views/Menu_Principal.html">Menu Principal</a>
+            <a href="../views/Menu_Principal.html">Home</a>
+            <a href="../views/Checkin.html">Check-in</a>
+            <a href="../views/Checkout.html">Check-out</a>
+            <a href="../views/Cadastro_Hospede.html">Cadastro de Hóspedes</a>
+            <a href="../views/Cadastro_Quartos.html">Cadastro de Quartos</a>
+            <a href="../views/Cadastro_Pedidos.html">Cadastro de Pedidos</a>
+            <a href="../views/Cadastro_Usuarios.html">Cadastro de Usuários</a>
+            <a href="#">Logout</a>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1 style="color: white">Cadastre novos quartos</h1>
+        </div>
+    </div>
+    <div>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cadastrar quartos</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label><b>Número do quarto:</b></label>
+                            <input type="text" style="width: 100px" id="numero" placeholder="Número" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label><b>Nome do quarto:</b></label>
+                            <input type="text" id="nome" placeholder="Nome do quarto" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
