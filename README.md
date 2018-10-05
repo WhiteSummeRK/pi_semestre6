@@ -19,7 +19,21 @@
  * Chat de atendimento (se der tempo) [ ] <br />
  * Implementação com mobile [ ] <br />
 
-## Docker:
+## Como subir a Aplicação:
+
+Antes de tudo, você deve instalar as dependencias do projeto, sugere-se criar um ambiente virtual antes, para isso execute o comando de instalação do pipenv:
+```sh
+pip install pipenv
+```
+Apos isso, vá até a pasta raiz do projeto e execute
+```sh
+pipenv shell
+```
+Enfim, execute a instalação das dependencias:
+```sh
+pip install -r requirements.txt
+```
+
 
 ### Limpar ambiente postgres
 
@@ -30,10 +44,14 @@ docker volume prune -f
 docker rmi -f $(docker images -q -a)
 ```
 
-### Criar container postgres
+### Realizar o build da imagem do docker
 
 ```sh
 docker build . -t sistema_hotel
+```
+
+### Criar o container
+```sh
 docker run -p 5432:5432 --name="sistema_hotel" -v local_hotel:/var/lib/postgresql/data sistema_hotel
 ```
 
@@ -46,7 +64,7 @@ python migrations.py db migrate
 python migrations.py db upgrade
 ```
 
-#### Para inserir os dados iniciais
+#### Para inserir os dados iniciais no BD
 ```sh
 python manage.py insertions
 ```
