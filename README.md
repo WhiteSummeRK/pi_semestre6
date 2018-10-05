@@ -12,7 +12,7 @@
  * Criação da base de dados [X] <br />
  * Criar login [X] <br />
  * Criar cadastro para hospedes inexistentes [X] <br />
- * Check-in dos hospedes [ ] <br />
+ * Check-in dos hospedes [X] <br />
  * Check-out dos hospedes [ ] <br />
  * Cadastro de novos pedidos [ ] <br />
  * Fechamento de caixa [ ] <br />
