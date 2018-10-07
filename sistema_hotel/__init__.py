@@ -10,7 +10,10 @@ from .controllers.check_in import app as check_in
 from .controllers.cadastro_usuarios import app as cadastro_usuarios
 from .controllers.cadastro_pedidos import app as cadastro_pedidos
 from .controllers.cadastro_hospede import app as cadastro_hospede
+from .models.tables import db_url, db
 
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
 app = Flask(__name__, template_folder='views', static_folder='assets')
 
@@ -23,3 +26,11 @@ app.register_blueprint(cadastro_usuarios, url_prefix='/cadastro_usuarios')
 app.register_blueprint(cadastro_pedidos, url_prefix='/cadastro_pedidos')
 app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+migrate = Migrate(app, db)
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)

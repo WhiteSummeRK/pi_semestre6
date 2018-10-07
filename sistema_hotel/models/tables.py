@@ -17,16 +17,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 db_url = 'postgresql://pi_fatec:pi_fatec123@localhost:5432/pi_fatec_db'
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = db_url
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+db = SQLAlchemy()
 
 
 class User(db.Model):
