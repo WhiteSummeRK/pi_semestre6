@@ -33,5 +33,4 @@ def view():
 @app.route('/', methods=['POST'])
 def post_checkout():
     room = request.form.get('fake_input')
-    import ipdb; ipdb.set_trace()
     user = query_resident_by_room(int(room), 'Diogo')

@@ -17,6 +17,13 @@
         <div class="forgot">
         </div>
         <button type="submit" class="btn btn-primary" id="login_btn">Login</button>
+        <div>
+        <h3>Languages</h3>
+        <label>
+          <input type="checkbox" class="radio" value="en" name="fooby[1][]" />English</label>
+        <label>
+          <input type="checkbox" class="radio" value="pt-br" name="fooby[1][]" />Portuguese</label>
+        </div>
     </form>
     </div>
 </div>
@@ -44,6 +51,22 @@ var error_handler = () =>{
   }
 }
 document.getElementById('login_btn').addEventListener('click', error_handler())
+
+$("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
 </script>
 </div>
 </div>

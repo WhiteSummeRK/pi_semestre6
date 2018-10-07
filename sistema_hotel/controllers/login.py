@@ -10,7 +10,9 @@ from flask import (
     jsonify,
     json
 )
+
 from sistema_hotel.models.db_functions import query_user
+from sistema_hotel.controllers.languages import messages
 
 app = Blueprint('login', __name__)
 
@@ -25,14 +27,15 @@ def view():
 def do_login():
     username = request.form.get('username')
     pwd = request.form.get('pwd')
+    language = request.form.get('fooby[1][]')
     user = query_user(username=username, pwd=pwd)
     if user and pwd == user.pwd:
-        return render_template('Menu_Principal.html')
+        return render_template('Menu_Principal.html', language=messages[language]) #NOQA
     return render_template('login.html',
                            login_error='true')
 
 
-@app.route('/api_login', methods=['POST','GET'])
+@app.route('/api_login', methods=['POST', 'GET'])
 def login_api():
     username = request.form.get('username')
     pwd = request.form.get('pwd')
@@ -43,5 +46,3 @@ def login_api():
         result = {'user':username,'is_authenticated':0}
 
     return jsonify(result)
-
-
