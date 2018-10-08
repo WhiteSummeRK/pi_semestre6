@@ -8,16 +8,19 @@ from flask import (
     url_for
 )
 from sistema_hotel.models.db_functions import save_resident
+from flask_login import login_required
 
 app = Blueprint('cadastro_hospede', __name__)
 
 
 @app.route('/', methods=['GET'])
+@login_required
 def view():
     return render_template('Cadastro_Hospede.html')
 
 
 @app.route('/', methods=['POST'])
+@login_required
 def post_view():
     name = request.form.get('nome')
     rg = request.form.get('rg')

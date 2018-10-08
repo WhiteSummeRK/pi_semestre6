@@ -14,12 +14,15 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                create_new_account,
                                                query_all_rooms,
                                                update_room_state)
+from flask_login import login_required
 
 app = Blueprint('checkin', __name__)
 
 
 @app.route('/', methods=['GET'])
+@login_required
 def view():
+    import ipdb; ipdb.set_trace()
     residents_query = query_all_residents()
     residents_name = [residents.name for residents in residents_query]
 
@@ -32,6 +35,7 @@ def view():
 
 
 @app.route('/', methods=['POST'])
+@login_required
 def post_checkin():
     resident_name = request.form.get('resident')
     checkin_date = request.form.get('checkin')

@@ -3,9 +3,11 @@ sqlalchemy
 Flask-SQLAlchemy
 Flask-Script
 Flask-Migrate
+Flask-Session
 SQLAlchemy
 requests
 docker
 ipdb
 psycopg2
 jinja2
+flask-login

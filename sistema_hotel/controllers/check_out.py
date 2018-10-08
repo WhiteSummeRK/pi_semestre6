@@ -7,6 +7,8 @@ from flask import (
     session,
     url_for
 )
+from flask_login import login_required
+
 from sistema_hotel.models.db_functions import (query_all_resident_accounts,
                                                query_resident_by_id,
                                                query_room_by_id,
@@ -17,6 +19,7 @@ app = Blueprint('checkout', __name__)
 
 
 @app.route('/', methods=['GET'])
+@login_required
 def view():
     act_query = query_all_resident_accounts()
     acts = [act.id_resident for act in act_query]
@@ -31,6 +34,7 @@ def view():
 
 
 @app.route('/', methods=['POST'])
+@login_required
 def post_checkout():
     room = request.form.get('fake_input')
     user = query_resident_by_room(int(room), 'Diogo')

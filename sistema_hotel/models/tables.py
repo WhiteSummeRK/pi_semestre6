@@ -33,6 +33,18 @@ class User(db.Model):
     is_adm = Column(Boolean, nullable=False)
     activity = Column(Boolean, default=True, primary_key=True)
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return not is_authenticated()
+
+    def get_id(self):
+        return chr(self.id)
+
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
         return 'User(id={}, username={}, \
