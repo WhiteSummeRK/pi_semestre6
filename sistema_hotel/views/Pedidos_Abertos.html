@@ -1,0 +1,95 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Check-in</title>
+
+    {% include 'components/base.html' %}
+    <script>
+    </script>
+
+    <!-- Bootstrap 4.0-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <style>
+        td,tr,table{
+            border: 1px solid black
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="menu">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+
+    </div>
+
+    {% include 'components/side_bar.html' %}
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1>Pedidos Abertos</h1>
+        </div>
+    </div>
+    <div>
+    <p>
+      <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+      </div>
+      <div class="collapse" id="teste">
+      <div class="card card-body">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+      </div>
+      </div>
+      <table style="width:100%">
+          <tr>
+              <td>Quarto</td>
+              <td>Andar</td>
+              <td>Hóspede</td>
+              <td>Data Pedido</td>
+              <td>Itens</td>
+          </tr>
+          <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>Kauan Alves</td>
+              <td>13h45 min</td>
+              <td><a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">5</a></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>Kauan Alves</td>
+            <td>13h45 min</td>
+            <td><a data-toggle="collapse" href="#teste" role="button" aria-expanded="false" aria-controls="collapseExample">5</a></td>
+      </tr>
+
+      </table>
+
+
+    </div>
+
+
+
+</body>
+
+</html>
