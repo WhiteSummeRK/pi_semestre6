@@ -1,4 +1,4 @@
-from sistema_hotel.models.tables import session, User, Resident, Room, Service, ResidentAccount
+from sistema_hotel.models.tables import session, User, Resident, Room, Service, ResidentAccount,Order
 from sqlalchemy import update
 
 
@@ -65,6 +65,11 @@ def query_resident_by_room(room_number, resident_name):
     user = session.query(ResidentAccount).filter_by(id_resident=resident.id_resident,
                                                     id_room=room.id_room).first()
     return user
+
+def query_outstanding(id_user):
+    value = session.query(Order).filter_by(status='0',id_resident=id_user)
+    return value
+
 
 def query_resident_by_id(id):
     return session.query(Resident).filter_by(id_resident=id).first()
