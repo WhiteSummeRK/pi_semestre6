@@ -22,7 +22,6 @@ app = Blueprint('checkin', __name__)
 @app.route('/', methods=['GET'])
 @login_required
 def view():
-    import ipdb; ipdb.set_trace()
     residents_query = query_all_residents()
     residents_name = [residents.name for residents in residents_query]
 
