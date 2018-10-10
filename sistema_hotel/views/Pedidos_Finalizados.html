@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Check-in</title>
+    <title>Pedidos Finalizados</title>
 
     {% include 'components/base.html' %}
     <script>
@@ -22,8 +22,8 @@
 </head>
 
 <body>
-    <div class="pos-f-t">
-        <div class="collapse" id="menu">
+      <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
                 <h4 class="text-white">Collapsed content</h4>
                 <span class="text-muted">Toggleable via the navbar brand.</span>
@@ -34,31 +34,56 @@
                 <span class="navbar-toggler-icon"></span>
             </a>
         </nav>
-
     </div>
 
     {% include 'components/side_bar.html' %}
 
     <div id="page-content-wrapper">
         <div class="container-fluid" style="text-align: center">
-            <h1>Pedidos FInalizados</h1>
+            <h1>Pedidos Finalizados</h1>
         </div>
     </div>
-    <div>
-    <p>
-      Traz aqui nome dos quartos com pedidos finalizados
-      <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Quarto 1 </a>
-      </p>
-      <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        Traz aqui os itens dos pedidos finalizados
-      </div>
-      </div>
+    <table style="width:100%;margin-top:100px" class="table table-hover">
+        <thead>
+            <td><b>Quarto</b></td>
+            <td><b>Andar</b></td>
+            <td><b>Hóspede</b></td>
+            <td><b>Data Pedido</b></td>
+            <td><b>Itens</b></td>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>Kauan Alves</td>
+            <td>13h45 min</td>
+            <td><a data-toggle="modal" href="#" data-target="#Itens" role="button" aria-expanded="false" aria-controls="collapseExample"><img style="width:25px" src="https://pt.clubpenguinwiki.info/static/images/cpwpt/thumb/6/6d/Tacos.png/300px-Tacos.png"></a></td>
+        </tr>
 
+    </table>
+
+    <!-- Modal -->
+    <div id="Itens" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div style="text-align:center">
+                        <h4>Itens do pedido</h4>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    ITENS DO PEDIDO AQUI KAUAN
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 
 
 </body>
-
 </html>
