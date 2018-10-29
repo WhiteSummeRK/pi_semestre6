@@ -1,4 +1,11 @@
-from sistema_hotel.models.tables import session, User, Resident, Room, Service, ResidentAccount,Order,ItemOrder
+from sistema_hotel.models.tables import (session,
+                                         User,
+                                         Resident,
+                                         Room,
+                                         Service,
+                                         ResidentAccount,
+                                         Order,
+                                         ItemOrder)
 from sqlalchemy import update,join
 
 
@@ -88,3 +95,5 @@ def query_outstanding(id_user):
 def query_resident_by_id(id):
     return session.query(Resident).filter_by(id_resident=id).first()
 
+def query_all_orders():
+    return session.query(Order).all()

@@ -1,5 +1,7 @@
+from datetime import datetime
+
 from sistema_hotel.models.tables import session, User, Room, Service, \
-    Category, Employee, Order, Resident,ResidentAccount,ItemOrder
+    Category, Employee, Order, Resident, ResidentAccount, ItemOrder
 
 
 def insert_users():
@@ -147,3 +149,33 @@ def insert_resident_account():
     session.commit()
 
 
+def insert_orders():
+    pedido1 = Order(
+        id_resident=1,
+        id_room=1,
+        date=datetime.now(),
+        status='Aberto',
+        total_value=199.00
+    )
+    session.add(pedido1)
+    session.commit()
+
+    pedido2 = Order(
+        id_resident=1,
+        id_room=1,
+        date=datetime.now(),
+        status='Cancelado',
+        total_value=199.00
+    )
+    session.add(pedido2)
+    session.commit()
+
+    pedido3 = Order(
+        id_resident=1,
+        id_room=1,
+        date=datetime.now(),
+        status='Finalizado',
+        total_value=199.00
+    )
+    session.add(pedido3)
+    session.commit()

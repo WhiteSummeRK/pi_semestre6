@@ -220,7 +220,7 @@ class Order(db.Model):
     id_room = Column(Integer, ForeignKey('room.id_room'))
     date = Column(DateTime, default='0000-00-00', nullable=False)
     status = Column(String(255), nullable=False)
-    total_value = Column(String(255), nullable=False)
+    total_value = Column(Float, nullable=False)
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
