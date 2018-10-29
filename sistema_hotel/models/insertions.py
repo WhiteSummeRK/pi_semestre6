@@ -1,5 +1,5 @@
 from sistema_hotel.models.tables import session, User, Room, Service, \
-    Category, Employee, Order, Resident
+    Category, Employee, Order, Resident,ResidentAccount,ItemOrder
 
 
 def insert_users():
@@ -65,7 +65,8 @@ def insert_services():
         id_employee=1,
         name='coca cola',
         description='beba uma cocacola e seja feliz para sempre',
-        value=500
+        value=500,
+        image ='teste'
     )
 
     session.add(service)
@@ -86,7 +87,9 @@ def insert_employee():
         nome='Jaime Ossada',
         cpf='4605552220',
         cargo='Cozinheiro',
-        setor='Cozinha'
+        setor='Cozinha',
+        username='WhiteSummeRK',
+        pwd='123',
     )
     session.add(employe)
     session.commit()
@@ -97,11 +100,25 @@ def insert_order():
         id_resident=1,
         id_room=1,
         date='2018-05-12',
-        status='a',
+        status='0',
         total_value='1000'
     )
     session.add(order)
     session.commit()
+
+def insert_item_order():
+    order = ItemOrder(
+    id_order =10,
+    id_service = 4,
+    id_employee = 1,
+    amount = 100,
+    value =10,
+    status = 0
+
+    )
+    session.add(order)
+    session.commit()
+
 
 
 def insert_resident():
@@ -109,7 +126,24 @@ def insert_resident():
         name='Kauan',
         rg='45646545',
         cpf='123132',
-        phone='465465'
+        phone='465465',
+        username='WhiteSummeRK',
+        pwd='123',
     )
     session.add(resident)
     session.commit()
+
+def insert_resident_account():
+    resident_account = ResidentAccount(
+    id_resident=1,
+    id_room = 1,
+    openned = '2018-05-12',
+    closed = '2018-05-12',
+    status = 'a',
+    value = 200
+
+    )
+    session.add(resident_account)
+    session.commit()
+
+

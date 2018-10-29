@@ -1,11 +1,22 @@
-from sistema_hotel.models.tables import session, User, Resident, Room, Service, ResidentAccount,Order
-from sqlalchemy import update
+from sistema_hotel.models.tables import session, User, Resident, Room, Service, ResidentAccount,Order,ItemOrder
+from sqlalchemy import update,join
 
 
 def query_user(*, username: str, pwd: str):
     """Busca usuarios no banco de dados através do nome e senha"""
     return session.query(User)\
         .filter_by(username=username, pwd=pwd).first()
+
+def query_resident(*, username: str, pwd: str):
+    result = ''
+    try:
+        result = session.query(Resident.id_resident,Resident.name,Resident.username,Resident.pwd,Room.description,
+                               Room.number,Room.id_room,Room.floor,Room.daily_value).join(ResidentAccount,
+                                                                                          Resident.id_resident==ResidentAccount.id_resident).\
+            join(Room,Room.id_room==ResidentAccount.id_room).filter(Resident.username==username,Resident.pwd==pwd).first()
+    except Exception as e:
+        print(e)
+    return result
 
 def query_services_names():
     """Retorna dados dos serviços cadastradps"""
@@ -67,9 +78,13 @@ def query_resident_by_room(room_number, resident_name):
     return user
 
 def query_outstanding(id_user):
-    value = session.query(Order).filter_by(status='0',id_resident=id_user)
+    value = session.query(Order.id_order,Order.total_value,Order.date,Order.status,ItemOrder.amount,ItemOrder.value,
+                          Service.name,Service.id_service,Service.description).join(ItemOrder,
+                                                                                    Order.id_order==ItemOrder.id_order)\
+        .join(Service,Service.id_service==ItemOrder.id_service).filter(Order.id_resident==id_user).all()
     return value
 
 
 def query_resident_by_id(id):
     return session.query(Resident).filter_by(id_resident=id).first()
+

@@ -12,7 +12,7 @@ from flask import (
 )
 from flask_login import login_user, logout_user
 
-from sistema_hotel.models.db_functions import query_user
+from sistema_hotel.models.db_functions import query_user,query_resident
 from sistema_hotel.controllers.languages import messages
 
 app = Blueprint('login', __name__)
@@ -42,14 +42,17 @@ def do_login():
 def login_api():
     username = request.form.get('username')
     pwd = request.form.get('pwd')
-    user = query_user(username=username, pwd=pwd)
+    user = query_resident(username=username, pwd=pwd)
     if user and pwd == user.pwd:
         result = {'user':user.username,
                   'name':user.name,
-                  'adm':user.is_adm,
+                  'room_description':user.description,
+                  'room_id': user.id_room,
+                  'room_number': user.number,
+                  'room_floor': user.floor,
+                  'room_daily_value':user.daily_value,
                   'is_authenticated':1}
     else:
         result = {'user':username,
                   'is_authenticated':0}
-
     return jsonify(result)

@@ -66,6 +66,8 @@ class Resident(db.Model):
 
     id_resident = Column(Integer, primary_key=True,
                          unique=True, autoincrement=True)
+    username = Column(String(255), nullable=False)
+    pwd = Column(String(255), nullable=False)
     name = Column(String(255), nullable=False)
     rg = Column(String(9), nullable=False)
     cpf = Column(String(11), nullable=False)
@@ -133,6 +135,8 @@ class Employee(db.Model):
 
     id_employee = Column(Integer, primary_key=True,
                          unique=True, autoincrement=True)
+    username = Column(String(255), nullable=False)
+    pwd = Column(String(255), nullable=False)
     id = Column(Integer, ForeignKey('user.id'))
     nome = Column(String(255), nullable=False)
     cpf = Column(String(11), nullable=False)
@@ -189,6 +193,7 @@ class Service(db.Model):
     id_employee = Column(Integer, ForeignKey('employee.id_employee'))
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=False)
+    image = Column(String(255), nullable=False)
     value = Column(Float, nullable=False)
 
     def __repr__(self):

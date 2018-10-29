@@ -14,7 +14,7 @@ def services():
     service = query_services_names()
     for item in service:
         result.update(
-            {item.id_service: {'id_employee': item.id_employee,
+            {item.id_service: {
                                'name': item.name, 'description':
                                    item.description,'value':item.value}})
     return jsonify(result)
@@ -23,11 +23,13 @@ def services():
 @app.route('/outstanding_balance', methods=['POST'])
 def outstanding():
     result = {}
-    request.form.get('id_resident')
-    service = query_outstanding()
+    id_resident = request.form.get('id_resident')
+    service = query_outstanding(id_resident)
     for item in service:
         result.update(
-            {item.id_service: {'id_employee': item.id_employee,
+            {item.id_order: {'total_value': item.total_value,
                                'name': item.name, 'description':
-                                   item.description,'value':item.value}})
+                                   item.description,'value':item.value,
+                               'date':item.date,'status':item.status,
+                               'amount':item.amount,'id_service':item.id_service}})
     return jsonify(result)
