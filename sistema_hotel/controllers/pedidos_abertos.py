@@ -9,7 +9,9 @@ from flask import (
 )
 from flask_login import login_required
 
-from sistema_hotel.models.db_functions import query_all_orders
+from sistema_hotel.models.db_functions import (query_all_orders,
+                                               query_room_by_id,
+                                               query_resident_by_id)
 
 app = Blueprint('pedidos_abertos', __name__)
 
@@ -17,6 +19,12 @@ app = Blueprint('pedidos_abertos', __name__)
 @app.route('/', methods=['GET'])
 @login_required
 def view():
+    payload = []
     orders = query_all_orders()
-    import ipdb; ipdb.set_trace()
-    return render_template('Pedidos_Abertos.html')
+    for item in orders:
+        if item.status == 'Aberto':
+            room = query_room_by_id(item.id_room)
+            resident = query_resident_by_id(item.id_resident)
+            payload.append([resident.name, room.number, room.floor, item.date, 'TESTE']) # NOQA
+
+    return render_template('Pedidos_Abertos.html', payload=payload)

@@ -43,14 +43,15 @@
             <td><b>Data Pedido</b></td>
             <td><b>Itens</b></td>
         </thead>
+    {% for item in payload %}
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>Kauan Alves</td>
-            <td>13h45 min</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[0]}}</td>
+            <td>{{item[3]}}</td>
             <td><a data-toggle="modal" href="#" data-target="#Itens" role="button" aria-expanded="false" aria-controls="collapseExample"><img style="width:25px" src="https://pt.clubpenguinwiki.info/static/images/cpwpt/thumb/6/6d/Tacos.png/300px-Tacos.png"></a></td>
         </tr>
-
+    {% endfor %}
     </table>
 
     <!-- Modal -->
