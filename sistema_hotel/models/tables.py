@@ -205,7 +205,8 @@ class Service(db.Model):
                     self.id_employee,
                     self.name,
                     self.description,
-                    self.value
+                    self.value,
+                    self.image_url
                 )
 
 
