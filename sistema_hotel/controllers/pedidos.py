@@ -13,7 +13,7 @@ from sistema_hotel.models.db_functions import (query_all_orders,
                                                query_room_by_id,
                                                query_resident_by_id)
 
-app = Blueprint('pedidos_abertos', __name__)
+app = Blueprint('pedidos', __name__)
 
 
 @app.route('/', methods=['GET'])
@@ -27,4 +27,4 @@ def view():
             resident = query_resident_by_id(item.id_resident)
             payload.append([resident.name, room.number, room.floor, item.date, 'TESTE']) # NOQA
 
-    return render_template('Pedidos_Abertos.html', payload=payload)
+    return render_template('Pedidos.html', payload=payload)

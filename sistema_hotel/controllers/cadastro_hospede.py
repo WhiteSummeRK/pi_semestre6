@@ -26,9 +26,10 @@ def post_view():
     rg = request.form.get('rg')
     cpf = request.form.get('cpf')
     phone = request.form.get('phone')
+    username = request.form.get('username')
 
     try:
-        save_resident(name=name, rg=rg, cpf=cpf, phone=phone)
+        save_resident(name=name, rg=rg, cpf=cpf, phone=phone, username=username)
         return render_template('Cadastro_Hospede.html', insertion_code=201)
     except Exception:
         return render_template('Cadastro_Hospede.html', insertion_code=500)

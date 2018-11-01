@@ -12,13 +12,10 @@ from .controllers.check_out import app as check_out
 from .controllers.check_in import app as check_in
 
 from .controllers.cadastro_usuarios import app as cadastro_usuarios
-from .controllers.cadastro_pedidos import app as cadastro_pedidos
 from .controllers.cadastro_hospede import app as cadastro_hospede
 from .controllers.cadastro_quartos import app as cadastro_quartos
 from .controllers.menu_principal import app as menu_principal
-from .controllers.pedidos_abertos import app as pedidos_abertos
-from .controllers.pedidos_cancelados import app as pedidos_cancelados
-from .controllers.pedidos_finalizados import app as pedidos_finalizados
+from .controllers.pedidos import app as pedidos
 from .models.tables import db_url, db, User
 from sistema_hotel.models.tables import session as db_session
 
@@ -37,13 +34,10 @@ app.register_blueprint(Service, url_prefix='/')
 app.register_blueprint(check_out, url_prefix='/check_out')
 app.register_blueprint(check_in, url_prefix='/check_in')
 app.register_blueprint(cadastro_usuarios, url_prefix='/cadastro_usuarios')
-app.register_blueprint(cadastro_pedidos, url_prefix='/cadastro_pedidos')
 app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 app.register_blueprint(cadastro_quartos, url_prefix='/cadastro_quartos')
 app.register_blueprint(menu_principal, url_prefix='/menu_principal')
-app.register_blueprint(pedidos_abertos, url_prefix='/pedidos_abertos')
-app.register_blueprint(pedidos_finalizados, url_prefix='/pedidos_finalizados')
-app.register_blueprint(pedidos_cancelados, url_prefix='/pedidos_cancelados')
+app.register_blueprint(pedidos, url_prefix='/pedidos')
 
 
 Session(app)

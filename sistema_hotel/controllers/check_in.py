@@ -14,7 +14,7 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                create_new_account,
                                                query_all_rooms,
                                                update_room_state)
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 app = Blueprint('checkin', __name__)
 

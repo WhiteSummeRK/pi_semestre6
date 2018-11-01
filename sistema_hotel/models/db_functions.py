@@ -29,15 +29,19 @@ def query_services_names():
     """Retorna dados dos serviços cadastradps"""
     return session.query(Service).all()
 
-def save_resident(*, name: str, rg: str, cpf: str, phone: str):
-    resident = Resident(
-        name=name,
-        rg=rg,
-        cpf=cpf,
-        phone=phone
-    )
-    session.add(resident)
-    session.commit()
+def save_resident(*, name: str, rg: str, cpf: str, phone: str, username: str):
+    try:
+        resident = Resident(
+            username=username,
+            name=name,
+            rg=rg,
+            cpf=cpf,
+            phone=phone,
+        )
+        session.add(resident)
+        session.commit()
+    except Exception as e:
+        session.rollback()
 
 def query_all_residents():
     return session.query(Resident).all()
