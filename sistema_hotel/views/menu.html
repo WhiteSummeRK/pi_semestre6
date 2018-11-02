@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+
+	<title>Menu - Hotel Service</title>
+
+	{% include 'components/base.html' %}
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    {% include 'components/sidebar.html' %}
+
+    <div class="main-panel">
+        
+        {% include 'components/topo.html' %}
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="icon-big icon-warning text-center">
+                                                <i class="ti-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="numbers">
+                                                Usuários
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Aqui você pode cadastrar um novo usuario, este pode vir a ser um Hospede ou ADM
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="icon-big icon-success text-center">
+                                                <i class="ti-bag"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="numbers">
+                                                Hóspedes
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Se voce já cadastrou um usuário, pode transforma-lo em um novo hóspede
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="icon-big icon-danger text-center">
+                                                <i class="ti-view-list-alt"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="numbers">
+                                                Serviços
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Cadastre aqui os serviços que o hotel oferece aos hóspedes para que eles façam os pedidos
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="icon-big icon-info text-center">
+                                                <i class="ti-home"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="numbers">
+                                                Quartos
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Cadastre aqui os quartos que possuem no hotel e gerencie sua disponibilidade
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <div class="icon-big icon-success text-center">
+                                                <i class="ti-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <div class="numbers">
+                                                Check-in dos Hóspedes
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Aqui você pode fazer o Check-in de hóspedes já cadastrados
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <a href="#">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <div class="icon-big icon-danger text-center">
+                                                <i class="ti-exchange-vertical"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <div class="numbers">
+                                                Check-out dos Hóspedes
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            Aqui você pode fazer o Check-out ao fim da estadia de um hóspede
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% include 'components/rodape.html' %}
+
+    </div>
+</div>
+
+
+</body>
+
+    {% include 'components/scripts.html' %}
+
+</html>

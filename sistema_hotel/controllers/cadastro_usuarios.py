@@ -15,4 +15,4 @@ app = Blueprint('cadastro_usuarios', __name__)
 @app.route('/', methods=['GET'])
 @login_required
 def view():
-    return render_template('Cadastro_Usuarios.html')
+    return render_template('usuarios-cadastro.html')
