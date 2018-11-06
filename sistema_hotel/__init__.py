@@ -14,7 +14,7 @@ from .controllers.check_in import app as check_in
 from .controllers.cadastro_usuarios import app as cadastro_usuarios
 from .controllers.cadastro_hospede import app as cadastro_hospede
 from .controllers.cadastro_quartos import app as cadastro_quartos
-from .controllers.menu_principal import app as menu_principal
+from .controllers.menu_principal import app as menu
 from .controllers.pedidos import app as pedidos
 from .models.tables import db_url, db, User
 from sistema_hotel.models.tables import session as db_session
@@ -36,7 +36,7 @@ app.register_blueprint(check_in, url_prefix='/check_in')
 app.register_blueprint(cadastro_usuarios, url_prefix='/cadastro_usuarios')
 app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 app.register_blueprint(cadastro_quartos, url_prefix='/cadastro_quartos')
-app.register_blueprint(menu_principal, url_prefix='/menu_principal')
+app.register_blueprint(menu, url_prefix='/menu')
 app.register_blueprint(pedidos, url_prefix='/pedidos')
 
 

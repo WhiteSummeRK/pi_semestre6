@@ -17,7 +17,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 # db_url = 'postgresql://pi_fatec:pi_fatec123@https://macabre-ghost-20284.herokuapp.com/pi_fatec_db'
-db_url = 'postgres://nycqzkfkppynzz:0532e71e320ecce823e39f4f1a306d4f5d5fc8a9321337e509502f7c07445ec1@ec2-54-225-115-234.compute-1.amazonaws.com:5432/d4rgdbjghdgs6h'
+db_url = 'postgres://hirronkobnwdgi:2fc41fb09b46120693deab8e4ebd311bdbe5a04d3b77587ed064de3f6d4a6c5c@ec2-23-23-153-145.compute-1.amazonaws.com:5432/d3f3tbmraot5nq'
 
 db = SQLAlchemy()
 
