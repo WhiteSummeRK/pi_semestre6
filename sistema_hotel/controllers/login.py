@@ -20,7 +20,6 @@ app = Blueprint('login', __name__)
 
 @app.route('/', methods=['GET'])
 def view():
-    logout_user()
     return render_template('login.html',
                            login_error='false')
 
@@ -32,7 +31,7 @@ def do_login():
     language = request.form.get('fooby[1][]')
     user = query_employee(name=name, pwd=pwd)
     if user and pwd == user.pwd:
-        login_user(user)
+        login_user(user, remember=True, force=True)
         session['languages'] = language
         return render_template('menu.html', language=messages[language]) #NOQA
     return render_template('login.html',

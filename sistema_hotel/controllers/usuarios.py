@@ -7,14 +7,14 @@ from flask import (
     session,
     url_for
 )
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 app = Blueprint('usuarios', __name__)
 
 
 @app.route('/', methods=['GET'])
 @login_required
-def view():
+def view_users():
     return render_template('usuarios.html')
 
 
