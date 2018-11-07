@@ -11,66 +11,8 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="danger">
 
-    <!--
-        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-    -->
-
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="menu.html" class="simple-text">
-                    Hotel Service
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li>
-                    <a href="menu.html">
-                        <i class="ti-panel"></i>
-                        <p>Menu</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="usuarios.html">
-                        <i class="ti-user"></i>
-                        <p>Usuários</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="ti-bag"></i>
-                        <p>Hóspedes</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Serviços</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="ti-home"></i>
-                        <p>Quartos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="ti-check"></i>
-                        <p>Check-in</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="ti-exchange-vertical"></i>
-                        <p>Check-out</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+  {% include 'components/sidebar.html' %}
 
     <div class="main-panel">
         <nav class="navbar navbar-default">
@@ -108,27 +50,26 @@
                                 <h4 class="title">Cadastrar Usuário</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form method="POST" action="/usuarios/" name="usuarios">
                                     <div class="form-group">
                                         <label>Tipo de Usuário</label>
-                                        <select id="tipo" class="form-control border-input">
+                                        <select name="tipo" class="form-control border-input">
                                             <option value="0">Selecione o tipo de Usuário</option>
-                                            <option value="1">ADM</option>
-                                            <option value="2">Funcionário</option>
-                                            <option value="3">Hóspede</option>
+                                            <option value="Hospede">Hóspede</option>
+                                            <option value="ADM">ADM</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Usuário</label>
-                                        <input type="text" id="nome" class="form-control border-input" placeholder="Usuário">
+                                        <input type="text" name="nome" class="form-control border-input" placeholder="Usuário" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Senha</label>
-                                        <input type="password" id="senha" class="form-control border-input" placeholder="Senha">
+                                        <input type="password" name="senha" class="form-control border-input" placeholder="Senha" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Confirmação de Senha</label>
-                                        <input type="password" id="confirmarsenha" class="form-control border-input" placeholder="Confirme sua Senha">
+                                        <input type="password" name="confirmarsenha" class="form-control border-input" placeholder="Confirme sua Senha" required>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-success btn-fill btn-wd">Cadastrar</button>

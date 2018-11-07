@@ -21,46 +21,6 @@ db_url = 'postgres://hirronkobnwdgi:2fc41fb09b46120693deab8e4ebd311bdbe5a04d3b77
 
 db = SQLAlchemy()
 
-
-class User(db.Model):
-    """Tabela de usuarios."""
-
-    __tablename__ = 'user'
-
-    id = Column(Integer, primary_key=True,
-                unique=True, autoincrement=True)
-    username = Column(String(255), nullable=False)
-    pwd = Column(String(255), nullable=False)
-    name = Column(String(255), nullable=False)
-    is_adm = Column(Boolean, nullable=False)
-    activity = Column(Boolean, default=True, primary_key=True)
-
-    def is_authenticated(self):
-        return True
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return not is_authenticated()
-
-    def get_id(self):
-        return chr(self.id)
-
-    def __repr__(self):
-        """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'User(id={}, username={}, \
-                pwd={}, name={}, \expenses_value, \
-                is_adm={}, activity={})'.format(
-                     self.id,
-                     self.username,
-                     self.pwd,
-                     self.name,
-                     self.is_adm,
-                     self.activity
-                    )
-
-
 class Resident(db.Model):
     """Tabela de Hospedes."""
 
@@ -135,26 +95,36 @@ class Employee(db.Model):
 
     __tablename__ = "employee"
 
-    id_employee = Column(Integer, primary_key=True,
+    id = Column(Integer, primary_key=True,
                          unique=True, autoincrement=True)
-    username = Column(String(255), nullable=False)
+    name = Column(String(255), nullable=False)
     pwd = Column(String(255), nullable=False)
-    id = Column(Integer, ForeignKey('user.id'))
-    nome = Column(String(255), nullable=False)
+    rg = Column(String(9), nullable=False)
     cpf = Column(String(11), nullable=False)
-    cargo = Column(String(255), nullable=False)
-    setor = Column(String(255), nullable=False)
+    phone = Column(String(11), nullable=False)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return not is_authenticated()
+
+    def get_id(self):
+        return chr(self.id)
 
     def __repr__(self):
         """Alteração do __repr__ para representar os elementos da tabela."""
-        return 'Employee(id_employee={}, id={}, \
-                nome={}, cpf={}, cargo={}, setor={})'.format(
-                    self.id_employee,
+        return 'Employee(id={}, \
+                name={}, pwd={}, rg={}, cpf={}, phone={})'.format(
                     self.id,
-                    self.nome,
+                    self.name,
+                    self.pwd,
+                    self.rg,
                     self.cpf,
-                    self.cargo,
-                    self.setor
+                    self.phone
                 )
 
 
@@ -192,7 +162,7 @@ class Service(db.Model):
     id_service = Column(Integer, primary_key=True,
                         unique=True, autoincrement=True)
     id_category = Column(Integer, ForeignKey('category.id_category'))
-    id_employee = Column(Integer, ForeignKey('employee.id_employee'))
+    id_employee = Column(Integer, ForeignKey('employee.id'))
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=False)
     image = Column(String(255), nullable=False)
@@ -247,7 +217,7 @@ class ItemOrder(db.Model):
                            unique=True, autoincrement=True)
     id_order = Column(Integer, ForeignKey('order.id_order'))
     id_service = Column(Integer, ForeignKey('service.id_service'))
-    id_employee = Column(Integer, ForeignKey('employee.id_employee'))
+    id_employee = Column(Integer, ForeignKey('employee.id'))
     amount = Column(Integer, nullable=False)
     value = Column(Float, nullable=False)
     status = Column(String(255), nullable=False)

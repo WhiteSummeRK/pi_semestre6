@@ -1,7 +1,7 @@
 from sistema_hotel.models.tables import (session,
-                                         User,
                                          Resident,
                                          Room,
+                                         Employee,
                                          Service,
                                          ResidentAccount,
                                          Order,
@@ -9,10 +9,10 @@ from sistema_hotel.models.tables import (session,
 from sqlalchemy import update,join
 
 
-def query_user(*, username: str, pwd: str):
+def query_employee(*, name: str, pwd: str):
     """Busca usuarios no banco de dados através do nome e senha"""
-    return session.query(User)\
-        .filter_by(username=username, pwd=pwd).first()
+    return session.query(Employee)\
+        .filter_by(name=name, pwd=pwd).first()
 
 def query_resident(*, username: str, pwd: str):
     result = ''

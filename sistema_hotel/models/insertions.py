@@ -1,29 +1,7 @@
 from datetime import datetime
 
-from sistema_hotel.models.tables import session, User, Room, Service, \
+from sistema_hotel.models.tables import session, Room, Service, \
     Category, Employee, Order, Resident, ResidentAccount, ItemOrder
-
-
-def insert_users():
-    kauan = User(
-        username='WhiteSummeRK',
-        pwd='123',
-        name='Kauan Alves',
-        is_adm=True,
-        activity=True
-    )
-    session.add(kauan)
-    session.commit()
-
-    hospede01 = User(
-        username='Hospede01',
-        pwd='123',
-        name='Hospede 01',
-        is_adm=False,
-        activity=False
-    )
-    session.add(hospede01)
-    session.commit()
 
 
 def insert_rooms():
@@ -86,11 +64,10 @@ def insert_category():
 
 def insert_employee():
     employe = Employee(
-        nome='Jaime Ossada',
+        name='WhiteSummeRK',
         cpf='4605552220',
-        cargo='Cozinheiro',
-        setor='Cozinha',
-        username='WhiteSummeRK',
+        rg='475294403',
+        phone='19989648989',
         pwd='123',
     )
     session.add(employe)

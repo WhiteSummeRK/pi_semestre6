@@ -11,12 +11,12 @@ from .controllers.mobile_api_services import app as Service
 from .controllers.check_out import app as check_out
 from .controllers.check_in import app as check_in
 
-from .controllers.cadastro_usuarios import app as cadastro_usuarios
+from .controllers.usuarios import app as usuarios
 from .controllers.cadastro_hospede import app as cadastro_hospede
 from .controllers.cadastro_quartos import app as cadastro_quartos
 from .controllers.menu_principal import app as menu
 from .controllers.pedidos import app as pedidos
-from .models.tables import db_url, db, User
+from .models.tables import db_url, db, Employee
 from sistema_hotel.models.tables import session as db_session
 
 
@@ -33,7 +33,7 @@ app.register_blueprint(login, url_prefix='/api_login')
 app.register_blueprint(Service, url_prefix='/')
 app.register_blueprint(check_out, url_prefix='/check_out')
 app.register_blueprint(check_in, url_prefix='/check_in')
-app.register_blueprint(cadastro_usuarios, url_prefix='/cadastro_usuarios')
+app.register_blueprint(usuarios, url_prefix='/usuarios')
 app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 app.register_blueprint(cadastro_quartos, url_prefix='/cadastro_quartos')
 app.register_blueprint(menu, url_prefix='/menu')
@@ -53,4 +53,4 @@ manager.add_command('db', MigrateCommand)
 
 @login_manager.user_loader
 def load_user(id):
-    return db_session.query(User).filter_by(id=ord(id)).first()
+    return db_session.query(Employee).filter_by(id=ord(id)).first()
