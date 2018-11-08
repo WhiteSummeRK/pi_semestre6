@@ -1,0 +1,109 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Check-in</title>
+
+    {% include 'components/base.html' %}
+
+    <!-- Bootstrap 4.0-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="menu">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+    </div>
+
+    {% include 'components/sidebar.html' %}
+    {% include 'components/topo.html' %}
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1 >Quartos ocupados</h1>
+        </div>
+    </div>
+    <div class="row">
+      {% for item in rooms %}
+        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
+            <img class="card-img-top" src="../assets/img/quarto.jpg">
+            <div class="card-body" style="background-color: white">
+                <h5 class="card-title">Quarto Nº {{item.number}}</h5>
+                <button href="#" id="teste" data-id="{{item.number}}" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Modal -->
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form action='/check_out/' method='POST'>
+                <input type='hidden' name='fake_input' id='fake_input'>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Fazer Check-out</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>
+                        <b>Hóspede:</b> Kauan Alves</h5>
+                    <h5>
+                        <b>Entrada:</b> 08/08/2018 às 14h00</h5>
+                    <h5>
+                        <b>Solicitações: </b>
+                    </h5>
+                    <ul>
+                        <li>Coca-Cola 250ml</li>
+                        <li>Água Mineral 500ml</li>
+                        <li>Picanha ao ponto</li>
+                    </ul>
+                    <div class="row" style="margin-left: 10%">
+                        <img src="../assets/img/pagamento.png" style="width: 50px;height: 50px;margin-right: 5px" />
+                        <h3> Saldo a pagar R$ 255,00</h3>
+                    </div>
+                    <div style="text-align: center">
+                        <button type="button" class="btn btn-success">Realizar Pagamento</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Fazer Check-out</button>
+                </div>
+            <form>
+            </div>
+        </div>
+    </div>
+<script>
+    var buttons = document.querySelectorAll("#teste")
+    buttons.forEach(function(item){
+      item.addEventListener('click', function(){
+        document.getElementById("fake_input").value = $(this).attr("data-id")
+        console.log(document.getElementById("fake_input").value)
+      })
+    })
+</script>
+
+</body>
+
+</html>

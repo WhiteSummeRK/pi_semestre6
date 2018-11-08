@@ -8,8 +8,7 @@ from flask_login import LoginManager
 from .controllers.login import app as login
 from .controllers.mobile_api_services import app as Service
 
-from .controllers.check_out import app as check_out
-from .controllers.check_in import app as check_in
+from .controllers.rooms import app as rooms
 
 from .controllers.usuarios import app as usuarios
 from .controllers.cadastro_hospede import app as cadastro_hospede
@@ -31,8 +30,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.register_blueprint(login, url_prefix='/')
 app.register_blueprint(login, url_prefix='/api_login')
 app.register_blueprint(Service, url_prefix='/')
-app.register_blueprint(check_out, url_prefix='/check_out')
-app.register_blueprint(check_in, url_prefix='/check_in')
+app.register_blueprint(rooms, url_prefix='/rooms')
 app.register_blueprint(usuarios, url_prefix='/usuarios')
 app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 app.register_blueprint(cadastro_quartos, url_prefix='/cadastro_quartos')

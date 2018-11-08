@@ -13,15 +13,30 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_room_by_room_number,
                                                create_new_account,
                                                query_all_rooms,
-                                               update_room_state)
+                                               update_room_state,
+                                               query_all_resident_accounts,
+                                               query_resident_by_id,
+                                               query_room_by_id)
 from flask_login import login_required, current_user
 
-app = Blueprint('checkin', __name__)
-
+app = Blueprint('rooms', __name__)
 
 @app.route('/', methods=['GET'])
 @login_required
-def view():
+def view_rooms():
+    residents_query = query_all_residents()
+    residents_name = [residents.name for residents in residents_query]
+
+    rooms_query = query_all_rooms()
+    rooms = [room.number for room in rooms_query if room.status == 'Livre']
+
+    return render_template('Checkin.html',
+                           residents=residents_name,
+                           rooms=rooms)
+
+@app.route('/checkin', methods=['GET'])
+@login_required
+def view_checkin():
     residents_query = query_all_residents()
     residents_name = [residents.name for residents in residents_query]
 
@@ -33,7 +48,7 @@ def view():
                            rooms=rooms)
 
 
-@app.route('/', methods=['POST'])
+@app.route('/checkin', methods=['POST'])
 @login_required
 def post_checkin():
     resident_name = request.form.get('resident')
@@ -53,4 +68,25 @@ def post_checkin():
         value=0.0
     )
 
-    return redirect(url_for('checkin.view'))
+    return redirect(url_for('rooms.view_checkin'))
+
+@app.route('/checkout', methods=['GET'])
+@login_required
+def view_checkout():
+    act_query = query_all_resident_accounts()
+    acts = [act.id_resident for act in act_query]
+    rooms = [rooms.id_room for rooms in act_query]
+
+    users = [query_resident_by_id(item) for item in acts]
+    all_rooms = [query_room_by_id(room_id) for room_id in rooms]
+
+    return render_template('Checkout.html',
+                           rooms=all_rooms,
+                           users=users)
+
+
+@app.route('/checkout', methods=['POST'])
+@login_required
+def post_checkout():
+    room = request.form.get('fake_input')
+    user = query_resident_by_room(int(room), 'Diogo')
