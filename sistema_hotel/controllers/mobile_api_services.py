@@ -16,7 +16,7 @@ def services():
         result.update(
             {item.id_service: {
                                'name': item.name, 'description':
-                                   item.description,'value':item.value}})
+                                   item.description,'value':item.value,'cover_img':item.image}})
     return jsonify(result)
 
 
