@@ -1,0 +1,165 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Check-in</title>
+
+    {% include 'components/base.html' %}
+    <script>
+    </script>
+
+    <!-- Bootstrap 4.0-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="pos-f-t">
+        <div class="collapse" id="menu">
+            <div class="bg-dark p-4">
+                <h4 class="text-white">Collapsed content</h4>
+                <span class="text-muted">Toggleable via the navbar brand.</span>
+            </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark">
+            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
+                <span class="navbar-toggler-icon"></span>
+            </a>
+        </nav>
+
+    </div>
+
+    {% include 'components/topo.html' %}
+    {% include 'components/sidebar.html' %}
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+            <h1>Quartos</h1>
+        </div>
+    </div>
+    <div class="content">
+    <div class="container">
+      <table class="table table-bordered">
+        <h2>Quartos do estabelecimento</h2>
+        <p>Utilize os filtros para procurar por situações específicas</p>
+        <form action='/rooms/' method="get">
+          <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="rooms" value="free_rooms">
+                Quartos livres
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="rooms" value="busy_rooms">
+                Quartos vagos
+            </label>
+            <label class="radio-inline">
+                <input type="radio" checked name="rooms" value="all_rooms">
+                Sem filtro
+            </label>
+            <label class="radio-inline">
+                <button type="submit" class="btn btn-info btn-fill btn-wd">Filtrar</button>
+            </label>
+          </div>
+        </form>
+        <thead>
+          <tr>
+            <th>Nº Quarto</th>
+            <th>Andar</th>
+            <th>Diária</th>
+            <th>Status</th>
+            <th>Alterar</th>
+          </tr>
+        </thead>
+        <tbody>
+      {% for item in rooms %}
+      <tr>
+        <td>{{item.number}}</td>
+        <td>{{item.floor}}</td>
+        <td>R$ {{item.daily_value}}</td>
+        <td>{{item.status}}</td>
+        <td><a href="#">{{'Checkin' if item.status == 'Livre' else 'Checkout' }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+    </div>
+  </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" name="check_in_modal">Fazer Check-in</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                      <form action='/check_in/' method="POST">
+                        <div class="form-group">
+                            <label for="hospede">
+                                <b>Selecione um Hóspede:</b>
+                            </label>
+                            <select class="form-control" name="resident">
+                                <option>Selecione um Hóspede</option>
+                                {% for item in residents %}
+                                  <option>{{item}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <input type="hidden" id="fake_input" name="fake_input"/>
+                        <div class="form-group">
+                            <label for="checkin" class="col-form-label">
+                                <b>Cadastrar novo hóspede:</b>
+                            </label>
+                            <br>
+                            <a type="button" href="/cadastro_hospede" class="btn btn-primary">Novo</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkin" class="col-form-label">
+                                <b>Check-in:</b>
+                            </label>
+                            <input type="datetime-local" class="form-control" name="checkin">
+                        </div>
+                        <div class="form-group">
+                            <label for="chekout" class="col-form-label">
+                                <b>Check-out:</b>
+                            </label>
+                            <input type="datetime-local" class="form-control" name="checkout">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="end_checkin">Finalizar Check-in</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        var buttons = document.querySelectorAll("#teste")
+        buttons.forEach(function(item){
+          item.addEventListener('click', function(){
+            document.getElementById("fake_input").value = $(this).attr("data-id")
+            console.log(document.getElementById("fake_input").value)
+          })
+        })
+    </script>
+
+</body>
+
+</html>

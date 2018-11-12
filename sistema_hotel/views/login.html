@@ -42,11 +42,9 @@
                                         <input type="radio" checked value="pt-br" name="fooby[1][]" />
                                         Portuguese
                                     </label>
-
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success btn-fill btn-wd">Login</button>
-                                    <a href="/menu_principal">menu</a>
                                 </div>
                             </form>
                         </div>
@@ -70,6 +68,22 @@
 </body>
 
 {% include 'components/scripts.html' %}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        demo.initChartist();
+
+        let msg_suc = ''
+        let msg_fail = ''
+
+        if ('{{login_error}}' == 'true'){
+          $.notify('Error, Username or password is incorrect!', 'error');
+        }
+
+    });
+</script>
+
 
 
 </html>
