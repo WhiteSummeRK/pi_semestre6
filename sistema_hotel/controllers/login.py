@@ -33,7 +33,7 @@ def do_login():
     if user and pwd == user.pwd:
         login_user(user, remember=True, force=True)
         session['languages'] = language
-        return render_template('menu.html', language=messages[language]) #NOQA
+        return render_template('menu.html', language=messages[language], login_error='false') #NOQA
     return render_template('login.html',
                            login_error='true')
 

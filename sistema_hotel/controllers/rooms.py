@@ -18,21 +18,18 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_resident_by_id,
                                                query_room_by_id)
 from flask_login import login_required, current_user
+from sistema_hotel.controllers.languages import messages
 
 app = Blueprint('rooms', __name__)
 
 @app.route('/', methods=['GET'])
 @login_required
 def view_rooms():
-    residents_query = query_all_residents()
-    residents_name = [residents.name for residents in residents_query]
-
     rooms_query = query_all_rooms()
-    rooms = [room.number for room in rooms_query if room.status == 'Livre']
 
-    return render_template('Checkin.html',
-                           residents=residents_name,
-                           rooms=rooms)
+    return render_template('rooms.html',
+                           rooms=rooms_query,
+                           language=messages[session['languages']])
 
 @app.route('/checkin', methods=['GET'])
 @login_required

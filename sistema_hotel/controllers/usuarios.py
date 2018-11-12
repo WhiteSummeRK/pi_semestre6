@@ -10,6 +10,8 @@ from flask import (
 from flask_login import login_required, current_user
 
 from sistema_hotel.models.db_functions import save_resident, save_employee
+from sistema_hotel.controllers.languages import messages
+
 
 app = Blueprint('usuarios', __name__)
 
@@ -18,7 +20,7 @@ app = Blueprint('usuarios', __name__)
 @login_required
 def view_users():
     error = request.args.get('error')
-    return render_template('usuarios.html', error=error)
+    return render_template('usuarios.html', error=error, language=messages[session['languages']])
 
 
 @app.route('/', methods=['POST'])
