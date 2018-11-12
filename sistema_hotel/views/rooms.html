@@ -42,40 +42,40 @@
 
     <div id="page-content-wrapper">
         <div class="container-fluid" style="text-align: center">
-            <h1>Quartos</h1>
+            <h1>{{ language['sidebar_rooms'] }}</h1>
         </div>
     </div>
     <div class="content">
     <div class="container">
       <table class="table table-bordered">
-        <h2>Quartos do estabelecimento</h2>
-        <p>Utilize os filtros para procurar por situações específicas</p>
+        <h2>{{ language['rooms_stab'] }}</h2>
+        <p>{{ language['filters_room'] }}</p>
         <form action='/rooms/' method="get">
           <div class="form-group">
             <label class="radio-inline">
                 <input type="radio" name="rooms" value="free_rooms">
-                Quartos livres
+                {{ language['filters_room_free'] }}
             </label>
             <label class="radio-inline">
                 <input type="radio" name="rooms" value="busy_rooms">
-                Quartos vagos
+                {{ language['filters_room_busy'] }}
             </label>
             <label class="radio-inline">
                 <input type="radio" checked name="rooms" value="all_rooms">
-                Sem filtro
+                {{ language['filters_room_no_filter'] }}
             </label>
             <label class="radio-inline">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">Filtrar</button>
+                <button type="submit" class="btn btn-info btn-fill btn-wd">{{ language['filter'] }}</button>
             </label>
           </div>
         </form>
         <thead>
           <tr>
-            <th>Nº Quarto</th>
-            <th>Andar</th>
-            <th>Diária</th>
+            <th>{{ language['rooms_number'] }}</th>
+            <th>{{ language['floor'] }}</th>
+            <th>{{ language['daily'] }}</th>
             <th>Status</th>
-            <th>Alterar</th>
+            <th>{{ language['change'] }}</th>
           </tr>
         </thead>
         <tbody>

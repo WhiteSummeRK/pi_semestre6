@@ -23,21 +23,21 @@
                     <div class="col-md-4 col-md-offset-4">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Cadastrar Usuário</h4>
+                                <h4 class="title">{{ language['new_user'] }}</h4>
                             </div>
                             <div class="content">
                                 <form method="POST" action="/usuarios/" name="usuarios">
                                     <div class="form-group">
-                                        <label>Tipo de Usuário</label>
+                                        <label>{{ language['type'] }}</label>
                                         <select name="tipo" class="form-control border-input">
-                                            <option value="0">Selecione o tipo de Usuário</option>
-                                            <option value="Hóspede">Hóspede</option>
+                                            <option value="0">{{ language['select_type'] }}</option>
+                                            <option value="Hóspede">{{ language['sidebar_residents'] }}</option>
                                             <option value="ADM">ADM</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Nome de Usuário</label>
-                                        <input type="text" name="nome" class="form-control border-input" placeholder="Nome de Usuário" required>
+                                        <label>Username</label>
+                                        <input type="text" name="nome" class="form-control border-input" placeholder="Username" required>
                                     </div>
                                     <div class="form-group">
                                         <label>RG</label>
@@ -48,19 +48,19 @@
                                         <input type="text" name="cpf" class="form-control border-input" placeholder="CPF" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Telefone</label>
-                                        <input type="text" name="telefone" class="form-control border-input" placeholder="Telefone" required>
+                                        <label>Phone</label>
+                                        <input type="text" name="telefone" class="form-control border-input" placeholder="Phone" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Senha</label>
-                                        <input type="password" name="senha" class="form-control border-input" placeholder="Senha" required>
+                                        <label>Password</label>
+                                        <input type="password" name="senha" class="form-control border-input" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
-                                        <label>Confirmação de Senha</label>
-                                        <input type="password" name="confirmarsenha" class="form-control border-input" placeholder="Confirme sua Senha" required>
+                                        <label>Password confirm</label>
+                                        <input type="password" name="confirmarsenha" class="form-control border-input" placeholder="Password confirm" required>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-success btn-fill btn-wd">Cadastrar</button>
+                                        <button type="submit" class="btn btn-success btn-fill btn-wd">Registrate</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>
@@ -98,16 +98,16 @@
             let msg_fail = ''
 
             if ('{{error}}' == 'hos_saved'){
-              msg_suc = 'Hóspede criado com sucesso!'
+              msg_suc = "{{ language['error_hos_saved'] }}"
             }
             if ('{{error}}' == 'emp_saved'){
-              msg_suc = 'Administrador criado com sucesso!'
+              msg_suc = "{{ language['error_emp_saved'] }}"
             }
             if ('{{error}}' == 'selecionar_tipo'){
-              msg_fail = 'Favor selecionar um tipo de funcionario!'
+              msg_fail = "{{ language['error_select_type'] }}"
             }
             if ('{{error}}' == 'pwds'){
-              msg_fail = 'As senhas não estão iguais, favor tentar novamente!'
+              msg_fail = "{{ language['error_pwds'] }}"
             }
 
             if ('{{error}}' == 'selecionar_tipo' || '{{error}}' == 'pwds'){
