@@ -7,7 +7,7 @@ messages = {
         'sidebar_services': 'Serviços',
         'sidebar_rooms': 'Quartos',
         'menu_new_user_msg': 'Aqui você pode cadastrar um novo usuario, este pode vir a ser um Hospede ou ADM',
-        'menu_new_resident_msg': 'Se voce já cadastrou um usuário, pode transforma-lo em um novo hóspede',
+        'menu_new_resident_msg': 'Aqui você pode ver todos os Hospedes registrados',
         'menu_new_service': 'Vizualize aqui os pedidos efetuados a cozinha',
         'menu_new_room': 'Vizualize os quartos e seus estados',
         'menu_checkin_msg': 'Aqui você pode fazer o Check-in de hóspedes já cadastrados',
@@ -28,7 +28,11 @@ messages = {
         'rooms_number': 'Nº do Quarto',
         'floor': 'Andar',
         'daily': 'Diária',
-        'change': 'Alterar'
+        'change': 'Alterar',
+        'registered_users': 'Usuários registrados',
+        'filters_adm': 'Apenas Administradores',
+        'filters_guests': 'Apenas Hóspedes'
+
 
     },
     'en': {
@@ -38,8 +42,8 @@ messages = {
         'sidebar_residents': 'Guests',
         'sidebar_services': 'Services',
         'sidebar_rooms': 'Rooms',
-        'menu_new_user_msg': 'Here you can registrate new users, ADM or resident',
-        'menu_new_resident_msg': 'If you already registered a user, it can become a new resident',
+        'menu_new_user_msg': 'Here you can registrate new users, they can be ADM or guests',
+        'menu_new_resident_msg': 'here you can see the whole list of guests',
         'menu_new_service': 'View here the requests made to the kitchen',
         'menu_new_room': 'View here the rooms and their states',
         'menu_checkin_msg': 'Here you can check in already registered residents',
@@ -60,6 +64,9 @@ messages = {
         'rooms_number': 'Room Number',
         'floor': 'Floor',
         'daily': 'Daily Value',
-        'change': 'Change'
+        'change': 'Change',
+        'registered_users': 'Registered Users',
+        'filters_adm': 'Only ADM',
+        'filters_guests': 'Only guests'
     }
 }

@@ -61,6 +61,9 @@ def save_employee(*, name: str, pwd: str, rg: str, cpf: str, phone: str):
 def query_all_residents():
     return session.query(Resident).all()
 
+def query_all_employees():
+    return session.query(Employee).all()
+
 def query_all_rooms():
     return session.query(Room).all()
 

@@ -9,7 +9,10 @@ from flask import (
 )
 from flask_login import login_required, current_user
 
-from sistema_hotel.models.db_functions import save_resident, save_employee
+from sistema_hotel.models.db_functions import (save_resident,
+                                               save_employee,
+                                               query_all_residents,
+                                               query_all_employees)
 from sistema_hotel.controllers.languages import messages
 
 
@@ -20,7 +23,12 @@ app = Blueprint('usuarios', __name__)
 @login_required
 def view_users():
     error = request.args.get('error')
-    return render_template('usuarios.html', error=error, language=messages[session['languages']])
+    users = request.args.get('users')
+    if users == 'adm_only':
+        return_users = query_all_employees()
+    else:
+        return_users = query_all_residents()
+    return render_template('usuarios.html', error=error, language=messages[session['languages']], users=return_users)
 
 
 @app.route('/', methods=['POST'])
