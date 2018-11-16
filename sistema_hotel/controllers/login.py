@@ -34,7 +34,7 @@ def do_login():
     if user and pwd == user.pwd:
         login_user(user)
         session['languages'] = language
-        return render_template('Menu_Principal.html', language=messages[language]) #NOQA
+        return render_template('Menu_Principal.html', language=messages[language]) 
     return render_template('login.html',
                            login_error='true')
 
@@ -47,6 +47,7 @@ def login_api():
     if user and pwd == user.pwd:
         result = {'user':user.username,
                   'name':user.name,
+                  'user_id': user.id_resident,
                   'room_description':user.description,
                   'room_id': user.id_room,
                   'room_number': user.number,
