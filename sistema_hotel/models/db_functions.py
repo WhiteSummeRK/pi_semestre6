@@ -92,7 +92,14 @@ def query_outstanding(id_user):
     value = session.query(Order.id_order,Order.total_value,Order.date,Order.status,ItemOrder.amount,ItemOrder.value,
                           Service.name,Service.id_service,Service.description).join(ItemOrder,
                                                                                     Order.id_order==ItemOrder.id_order)\
-        .join(Service,Service.id_service==ItemOrder.id_service).filter(Order.id_resident==id_user).all()
+        .join(Service,Service.id_service==ItemOrder.id_service).filter(Order.id_resident==id_user).filter(Order.status != '3').all()
+    return value
+
+def service_status(id_user,id_room):
+    value = session.query(Order.id_order,Order.total_value,Order.date,Order.status,ItemOrder.amount,ItemOrder.value,
+                          Service.name,Service.id_service,Service.description).join(ItemOrder,
+                                                                                    Order.id_order==ItemOrder.id_order)\
+        .join(Service,Service.id_service==ItemOrder.id_service).filter(Order.id_resident==id_user).filter(Order.id_room==id_room).all()
     return value
 
 
