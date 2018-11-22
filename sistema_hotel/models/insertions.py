@@ -74,32 +74,6 @@ def insert_employee():
     session.commit()
 
 
-def insert_order():
-    order = Order(
-        id_resident=1,
-        id_room=1,
-        date='2018-05-12',
-        status='0',
-        total_value='1000'
-    )
-    session.add(order)
-    session.commit()
-
-def insert_item_order():
-    order = ItemOrder(
-    id_order =10,
-    id_service = 4,
-    id_employee = 1,
-    amount = 100,
-    value =10,
-    status = 0
-
-    )
-    session.add(order)
-    session.commit()
-
-
-
 def insert_resident():
     resident = Resident(
         name='Kauan',
@@ -131,7 +105,7 @@ def insert_orders():
         id_resident=1,
         id_room=1,
         date=datetime.now(),
-        status='Aberto',
+        status='0',
         total_value=199.00
     )
     session.add(pedido1)
@@ -141,7 +115,7 @@ def insert_orders():
         id_resident=1,
         id_room=1,
         date=datetime.now(),
-        status='Cancelado',
+        status='1',
         total_value=199.00
     )
     session.add(pedido2)
@@ -151,7 +125,7 @@ def insert_orders():
         id_resident=1,
         id_room=1,
         date=datetime.now(),
-        status='Finalizado',
+        status='2',
         total_value=199.00
     )
     session.add(pedido3)

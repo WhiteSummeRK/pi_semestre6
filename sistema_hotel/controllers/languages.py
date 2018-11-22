@@ -28,12 +28,23 @@ messages = {
         'rooms_number': 'Nº do Quarto',
         'floor': 'Andar',
         'daily': 'Diária',
+        'total_value': 'Valor total',
         'change': 'Alterar',
         'registered_users': 'Usuários registrados',
         'filters_adm': 'Apenas Administradores',
-        'filters_guests': 'Apenas Hóspedes'
-
-
+        'filters_guests': 'Apenas Hóspedes',
+        'waiting_requests': 'Pedidos aguardando',
+        'doing_requests': 'Pedidos sendo feitos',
+        'closed_requests': 'Pedidos fechados',
+        'all_requests': 'Todos os pedidos',
+        'last_requests': 'Quantidade a mostrar',
+        'guests_name': 'Nome do Hóspede',
+        'request_desc': 'Descrição',
+        'requests': 'Pedidos',
+        'waiting': 'Aguardando',
+        'closed': 'Finalizado',
+        'doing': 'Em Andamento',
+        'change_state': 'Alterar estado'
     },
     'en': {
         'leave': 'Exit',
@@ -64,9 +75,22 @@ messages = {
         'rooms_number': 'Room Number',
         'floor': 'Floor',
         'daily': 'Daily Value',
+        'total_value': 'Total value',
         'change': 'Change',
         'registered_users': 'Registered Users',
         'filters_adm': 'Only ADM',
-        'filters_guests': 'Only guests'
+        'filters_guests': 'Only guests',
+        'waiting_requests': 'Waiting requests',
+        'doing_requests': 'Requests in process',
+        'closed_requests': 'Closed requests',
+        'all_requests': 'All requests',
+        'last_requests': 'Amount of requests to show',
+        'guests_name': 'Guest Name',
+        'request_desc': 'Description',
+        'requests': 'Requests',
+        'waiting': 'Waiting',
+        'closed': 'Closed',
+        'doing': 'Doing',
+        'change_state': 'Change State'
     }
 }

@@ -6,13 +6,14 @@ from sistema_hotel.models.tables import (session,
                                          ResidentAccount,
                                          Order,
                                          ItemOrder)
-from sqlalchemy import update,join
+from sqlalchemy import update, join
 
 
 def query_employee(*, name: str, pwd: str):
     """Busca usuarios no banco de dados através do nome e senha"""
     return session.query(Employee)\
         .filter_by(name=name, pwd=pwd).first()
+
 
 def query_resident(*, username: str, pwd: str):
     result = ''
@@ -29,6 +30,7 @@ def query_services_names():
     """Retorna dados dos serviços cadastradps"""
     return session.query(Service).all()
 
+
 def save_resident(*, name: str, rg: str, cpf: str, phone: str, username: str, pwd: str):
     try:
         resident = Resident(
@@ -44,6 +46,7 @@ def save_resident(*, name: str, rg: str, cpf: str, phone: str, username: str, pw
     except Exception as e:
         session.rollback()
 
+
 def save_employee(*, name: str, pwd: str, rg: str, cpf: str, phone: str):
         try:
             employee = Employee(
@@ -58,45 +61,55 @@ def save_employee(*, name: str, pwd: str, rg: str, cpf: str, phone: str):
         except Exception as e:
             session.rollback()
 
+
 def query_all_residents():
     return session.query(Resident).all()
+
 
 def query_all_employees():
     return session.query(Employee).all()
 
+
 def query_all_rooms():
     return session.query(Room).all()
+
 
 def query_resident_by_name(name):
     return session.query(Resident).filter_by(name=name).first()
 
+
 def query_room_by_room_number(room_number):
     return session.query(Room).filter_by(number=room_number).first()
 
+
 def create_new_account(*, resident, room, openned, closed, status, value):
     account = ResidentAccount(
-    id_resident=resident.id_resident,
-    id_room=room.id_room,
-    openned=openned,
-    closed=closed,
-    status=status,
-    value=value
+        id_resident=resident.id_resident,
+        id_room=room.id_room,
+        openned=openned,
+        closed=closed,
+        status=status,
+        value=value
     )
     session.add(account)
     session.commit()
     return account
 
+
 def update_room_state(room_number, updade_to):
-    room_state = update(Room).where(Room.number==room_number).\
+    room_state = update(Room).where(Room.number == room_number).\
         values(status=updade_to)
     session.execute(room_state)
     session.commit()
 
+
 def query_all_resident_accounts():
     return session.query(ResidentAccount).all()
 
+
 def query_room_by_id(room_id):
     return session.query(Room).first()
+
 
 def query_resident_by_room(room_number, resident_name):
     room = query_room_by_room_number(room_number)
@@ -105,6 +118,7 @@ def query_resident_by_room(room_number, resident_name):
     user = session.query(ResidentAccount).filter_by(id_resident=resident.id_resident,
                                                     id_room=room.id_room).first()
     return user
+
 
 def query_outstanding(id_user):
     value = session.query(Order.id_order,Order.total_value,Order.date,Order.status,ItemOrder.amount,ItemOrder.value,
@@ -117,5 +131,10 @@ def query_outstanding(id_user):
 def query_resident_by_id(id):
     return session.query(Resident).filter_by(id_resident=id).first()
 
-def query_all_orders():
-    return session.query(Order).all()
+
+def query_all_orders(amount):
+    return session.query(Order).limit(int(amount)).all()
+
+
+def query_specific_status_orders(status, amount):
+    return session.query(Order).filter_by(status=status).limit(int(amount)).all() # NOQA

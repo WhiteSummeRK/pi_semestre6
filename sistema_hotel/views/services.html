@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Usuários - Hotel Service</title>
+
+    {% include 'components/base.html' %}
+
+</head>
+<body>
+
+<div class="wrapper">
+
+  {% include 'components/sidebar.html' %}
+
+    <div class="main-panel">
+
+    {% include 'components/topo.html' %}
+
+        <div class="container">
+          <table class="table table-bordered">
+            <h2>{{ language['requests'] }}</h2>
+            <p>{{ language['filters_room'] }}</p>
+            <form action='/pedidos/' method="post">
+              <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="users" value="waiting">
+                    {{ language['waiting_requests'] }}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="users" value="doing">
+                    {{ language['doing_requests'] }}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="users" value="closed">
+                    {{ language['closed_requests'] }}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="users" checked value="all">
+                    {{ language['all_requests'] }}
+                </label>
+                <label class="radio-inline">
+                    <input type="textbox" name="amount" size="4" value="10">
+                    {{ language['last_requests'] }}
+                </label>
+                <label class="radio-inline">
+                    <button type="submit" class="btn btn-info btn-fill btn-wd">{{ language['filter'] }}</button>
+                </label>
+              </div>
+            </form>
+            <thead>
+              <tr>
+                <th>{{ language['rooms_number'] }}</th>
+                <th>{{ language['guests_name'] }}</th>
+                <th>{{ language['floor'] }}</th>
+                <th>{{ language['total_value'] }}</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+              {% for item in payload %}
+              <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                {% if item[5] == '0' %}
+                <td><button type="submit" class="btn btn-warning btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['waiting'] }}</button></td>
+                {% endif %}
+                {% if item[5] == '1' %}
+                <td><button type="submit" class="btn btn-success btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['doing'] }}</button></td>
+                {% endif %}
+                {% if item[5] == '2' %}
+                <td><button type="submit" class="btn btn-info btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['closed'] }}</button></td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </thead>
+            <tbody>
+        </tbody>
+        </table>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script>, made by Hotel Service
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+
+
+</body>
+
+  {% include 'components/scripts.html' %}
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+        });
+    </script>
+
+</html>
