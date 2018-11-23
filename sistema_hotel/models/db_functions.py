@@ -138,3 +138,10 @@ def query_all_orders(amount):
 
 def query_specific_status_orders(status, amount):
     return session.query(Order).filter_by(status=status).limit(int(amount)).all() # NOQA
+
+
+def update_order_status(id, new_status):
+    state = update(Order).where(Order.id_order == id).\
+        values(status=new_status)
+    session.execute(state)
+    session.commit()

@@ -66,13 +66,13 @@
                 <td>{{item[3]}}</td>
                 <td>{{item[4]}}</td>
                 {% if item[5] == '0' %}
-                <td><button type="submit" class="btn btn-warning btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['waiting'] }}</button></td>
+                <td><button type="submit" class="btn btn-warning btn-fill btn-wd" id="{{item[6]}}" title="{{ language['change_state'] }}">{{ language['waiting'] }}</button></td>
                 {% endif %}
                 {% if item[5] == '1' %}
-                <td><button type="submit" class="btn btn-success btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['doing'] }}</button></td>
+                <td><button type="submit" class="btn btn-success btn-fill btn-wd" id="{{item[6]}}" title="{{ language['change_state'] }}">{{ language['doing'] }}</button></td>
                 {% endif %}
                 {% if item[5] == '2' %}
-                <td><button type="submit" class="btn btn-info btn-fill btn-wd" id='delete_user' title="{{ language['change_state'] }}">{{ language['closed'] }}</button></td>
+                <td><button type="submit" class="btn btn-info btn-fill btn-wd" id="{{item[6]}}" title="{{ language['change_state'] }}">{{ language['closed'] }}</button></td>
                 {% endif %}
               </tr>
               {% endfor %}
@@ -106,6 +106,55 @@
             demo.initChartist();
 
         });
+
+    btn_doing = document.getElementsByClassName('btn-success')
+    btn_waiting = document.getElementsByClassName('btn-warning')
+
+    for(var item of btn_doing){
+      item.addEventListener('click', (e) =>{
+      let t = e.target;
+
+      fetch('/pedidos/alterar_estado', {
+          method: 'post',
+          credentials: 'include',
+          body: JSON.stringify({
+              'estado': '1',
+              'id': t.id
+          }),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+      }).then(response => response.json())
+          .then(json => {
+            console.log(json)
+          })
+          .catch(err => { console.error(err) });
+  })
+};
+
+    for(var item of btn_waiting){
+      item.addEventListener('click', (e) =>{
+      let t = e.target;
+
+      fetch('/pedidos/alterar_estado', {
+          method: 'post',
+          credentials: 'include',
+          body: JSON.stringify({
+              'estado': '2',
+              'id': t.id
+          }),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+      }).then(response => response.json())
+          .then(json => {
+            console.log(json)
+          })
+          .catch(err => { console.error(err) });
+    })
+    };
     </script>
 
 </html>
