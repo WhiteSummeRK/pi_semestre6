@@ -85,7 +85,30 @@
         <td>{{item.floor}}</td>
         <td>R$ {{item.daily_value}}</td>
         <td>{{item.status}}</td>
-        <td><a href="#">{{'Checkin' if item.status == 'Livre' else 'Checkout' }}</a></td>
+        {% if item.status == 'Livre' %}
+        <td>
+          <form class="form-inline" action="/rooms/checkin" method="post">
+            <button type="submit" class="btn btn-success btn-fill btn-wd" value="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
+            <label for="rg-from" style="margin-left: 10px;">Hospede: </label>
+            <div class="form-group">
+              <input type="text" id="rg-from" name="rg-from" class="form-control" required>
+            </div>
+            <!-- rest of form -->
+          </form>
+        </td>
+        {% endif %}
+        {% if item.status == 'Ocupado' %}
+        <td>
+          <form class="form-inline">
+            <button type=submit class="btn btn-info btn-fill btn-wd" id="{{item.id_room}}" title="{{ language['change_state'] }}">Check-out</button>
+            <label for="rg-from">Ab: </label>
+            <div class="form-group">
+              <input type="text" id="rg-from" name="rg-from" value="" class="form-control" required>
+            </div>
+            <!-- rest of form -->
+          </form>
+        </td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
@@ -94,19 +117,41 @@
   </div>
 
 
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        var buttons = document.querySelectorAll("#teste")
-        buttons.forEach(function(item){
-          item.addEventListener('click', function(){
-            document.getElementById("fake_input").value = $(this).attr("data-id")
-            console.log(document.getElementById("fake_input").value)
-          })
-        })
-    </script>
+<script>
+    btn_checkin = document.getElementsByClassName('btn-success')
+    btn_checkout = document.getElementsByClassName('btn-info')
+
+//     for(var item of btn_checkin){
+//       item.addEventListener('click', (e) =>{
+//       let t = e.target;
+//
+//       var id_to_send = t.id;
+//       window.location = '/rooms/checkin?id=' + id_to_send
+//   })
+// };
+//     for(var item of btn_checkout){
+//       item.addEventListener('click', (e) =>{
+//         let t = e.target;
+//
+//         var id_to_send = t.id;
+//         window.location = '/rooms/checkout?id=' + id_to_send
+// });
+// }
+
+$(document).ready(function(){
+
+    demo.initChartist();
+
+    if ('{{error}}' == 'no_guests'){
+      $.notify("Hospede não encontrado", 'error');
+    }
+    if ('{{error}}' == 'success'){
+      $.notify("Checkin realizado com sucesso", 'success');
+    }
+
+});
+
+</script>
 
 </body>
 

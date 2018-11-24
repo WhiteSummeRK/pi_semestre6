@@ -16,7 +16,9 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                update_room_state,
                                                query_all_resident_accounts,
                                                query_resident_by_id,
-                                               query_room_by_id)
+                                               query_room_by_id,
+                                               query_all_busy_rooms,
+                                               query_all_free_rooms)
 from flask_login import login_required, current_user
 from sistema_hotel.controllers.languages import messages
 
@@ -25,61 +27,54 @@ app = Blueprint('rooms', __name__)
 @app.route('/', methods=['GET'])
 @login_required
 def view_rooms():
-    rooms_query = query_all_rooms()
+    error = request.args.get('error')
+    types = request.args.get('rooms')
+    if types == 'free_rooms':
+        rooms_query = query_all_free_rooms()
+    elif types == 'busy_rooms':
+        rooms_query = query_all_busy_rooms()
+    else:
+        rooms_query = query_all_rooms()
 
     return render_template('rooms.html',
                            rooms=rooms_query,
-                           language=messages[session['languages']])
-
-@app.route('/checkin', methods=['GET'])
-@login_required
-def view_checkin():
-    residents_query = query_all_residents()
-    residents_name = [residents.name for residents in residents_query]
-
-    rooms_query = query_all_rooms()
-    rooms = [room.number for room in rooms_query if room.status == 'Livre']
-
-    return render_template('Checkin.html',
-                           residents=residents_name,
-                           rooms=rooms)
-
+                           language=messages[session['languages']],
+                           error=error)
 
 @app.route('/checkin', methods=['POST'])
 @login_required
 def post_checkin():
-    resident_name = request.form.get('resident')
-    checkin_date = request.form.get('checkin')
-    checkout_date = request.form.get('checkout')
-    room_number = request.form.get('fake_input')
+    resident_name = request.form.get('rg-form')
+    room_number = request.form.get('id_btn')
 
     update_room_state(room_number, 'Ocupado')
 
     resident = query_resident_by_name(resident_name)
-    new_account = create_new_account(
-        resident=resident,
-        room=query_room_by_room_number(room_number),
-        openned=datetime.now(),
-        closed=datetime.now(),
-        status='Não pago',
-        value=0.0
-    )
 
-    return redirect(url_for('rooms.view_checkin'))
+    if resident:
+        new_account = create_new_account(
+            resident=resident_name,
+            room=query_room_by_room_number(room_number),
+            openned=datetime.now(),
+            closed=datetime.now(),
+            status='Não pago',
+            value=0.0
+        )
+        return redirect(url_for('rooms.view_rooms', error='success'))
+    return redirect(url_for('rooms.view_rooms', error='no_guests'))
+
 
 @app.route('/checkout', methods=['GET'])
 @login_required
 def view_checkout():
-    act_query = query_all_resident_accounts()
-    acts = [act.id_resident for act in act_query]
-    rooms = [rooms.id_room for rooms in act_query]
+    # act_query = query_all_resident_accounts()
+    # acts = [act.id_resident for act in act_query]
+    # rooms = [rooms.id_room for rooms in act_query]
+    #
+    # users = [query_resident_by_id(item) for item in acts]
+    # all_rooms = [query_room_by_id(room_id) for room_id in rooms]
 
-    users = [query_resident_by_id(item) for item in acts]
-    all_rooms = [query_room_by_id(room_id) for room_id in rooms]
-
-    return render_template('Checkout.html',
-                           rooms=all_rooms,
-                           users=users)
+    return render_template('Checkout.html', language=messages[session['languages']])
 
 
 @app.route('/checkout', methods=['POST'])
