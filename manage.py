@@ -27,6 +27,9 @@ def insertions():
     insert_resident_account()
     insert_orders()
 
+@manager.command
+def orders():
+    insert_orders()
 
 if __name__ == '__main__':
     manager.run()

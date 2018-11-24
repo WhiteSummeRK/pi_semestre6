@@ -15,7 +15,8 @@ from sistema_hotel.models.db_functions import (query_all_orders,
                                                query_specific_status_orders,
                                                query_room_by_id,
                                                query_resident_by_id,
-                                               update_order_status)
+                                               update_order_status,
+                                               query_order_by_id)
 
 
 app = Blueprint('pedidos', __name__)
@@ -69,4 +70,7 @@ def post_pedidos():
         update_order_status(id, '1')
     if estado_atual == '1':
         update_order_status(id, '2')
-    return jsonify({'teste': 'ok'})
+    estado_novo = query_order_by_id(id).status
+
+    return jsonify({'estado_novo': estado_novo,
+                    'id':id})

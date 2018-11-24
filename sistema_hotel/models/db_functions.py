@@ -136,6 +136,10 @@ def query_all_orders(amount):
     return session.query(Order).limit(int(amount)).all()
 
 
+def query_order_by_id(id):
+    return session.query(Order).filter_by(id_order=id).first()
+
+
 def query_specific_status_orders(status, amount):
     return session.query(Order).filter_by(status=status).limit(int(amount)).all() # NOQA
 
