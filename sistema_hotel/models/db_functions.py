@@ -74,6 +74,14 @@ def query_all_rooms():
     return session.query(Room).all()
 
 
+def query_all_free_rooms():
+    return session.query(Room).filter_by(status='Livre').all()
+
+
+def query_all_busy_rooms():
+    return session.query(Room).filter_by(status='Ocupado').all()
+
+
 def query_resident_by_name(name):
     return session.query(Resident).filter_by(name=name).first()
 

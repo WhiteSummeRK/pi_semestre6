@@ -6,10 +6,10 @@ from sistema_hotel.models.tables import session, Room, Service, \
 
 def insert_rooms():
     room1 = Room(
-        number=10,
+        number=12,
         floor=1,
         description="Quarto do primeiro andar",
-        daily_value=89.90,
+        daily_value=120.90,
         status='Livre'
     )
 
@@ -17,10 +17,10 @@ def insert_rooms():
     session.commit()
 
     room2 = Room(
-        number=20,
+        number=13,
         floor=1,
-        description="Quarto do primeiro andar",
-        daily_value=89.90,
+        description="Quarto do segundo andar",
+        daily_value=110.90,
         status='Livre'
     )
 
@@ -28,10 +28,10 @@ def insert_rooms():
     session.commit()
 
     room3 = Room(
-        number=30,
+        number=14,
         floor=1,
         description="Quarto do primeiro andar",
-        daily_value=89.90,
+        daily_value=23.90,
         status='Livre'
     )
 

@@ -31,5 +31,9 @@ def insertions():
 def orders():
     insert_orders()
 
+@manager.command
+def rooms():
+    insert_rooms()
+
 if __name__ == '__main__':
     manager.run()
