@@ -18,17 +18,7 @@ def runserver():
     app.run(debug=True)
 
 
-@manager.command
-def insertions():
-    insert_users()
-    insert_rooms()
-    insert_category()
-    insert_employee()
-    insert_services()
-    insert_resident()
-    insert_resident_account()
-    insert_orders()
 
 
-if __name__ == '__main__':
-    manager.run()
+
+runserver()
