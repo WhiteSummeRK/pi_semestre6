@@ -16,7 +16,6 @@ from sqlalchemy import (
     DateTime)
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-# db_url = 'postgresql://pi_fatec:pi_fatec123@https://macabre-ghost-20284.herokuapp.com/pi_fatec_db'
 db_url = 'postgres://hirronkobnwdgi:2fc41fb09b46120693deab8e4ebd311bdbe5a04d3b77587ed064de3f6d4a6c5c@ec2-23-23-153-145.compute-1.amazonaws.com:5432/d3f3tbmraot5nq'
 
 db = SQLAlchemy()
