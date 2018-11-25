@@ -16,8 +16,6 @@ manager = Manager(app)
 def runserver():
     app.run(debug=True)
 
-
-<<<<<<< HEAD
 @manager.command
 def insertions():
     insert_rooms()
@@ -38,9 +36,5 @@ def rooms():
 
 if __name__ == '__main__':
     manager.run()
-=======
-
-
 
 runserver()
->>>>>>> master
