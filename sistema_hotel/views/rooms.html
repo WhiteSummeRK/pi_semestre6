@@ -87,20 +87,20 @@
         <td>{{item.status}}</td>
         {% if item.status == 'Livre' %}
         <td>
-          <form class="form-inline" action="/rooms/checkin" method="post">
-            <button type="submit" class="btn btn-success btn-fill btn-wd" value="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
+          <div class="form-inline">
+            <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
             <label for="rg-from" style="margin-left: 10px;">Hospede: </label>
             <div class="form-group">
-              <input type="text" id="rg-from" name="rg-from" class="form-control" required>
+              <input type="text" id="rg-from" name="rg-from" class="form-control number-{{item.number}}" required>
             </div>
             <!-- rest of form -->
-          </form>
+          </div>
         </td>
         {% endif %}
         {% if item.status == 'Ocupado' %}
         <td>
           <form class="form-inline">
-            <button type=submit class="btn btn-info btn-fill btn-wd" id="{{item.id_room}}" title="{{ language['change_state'] }}">Check-out</button>
+            <button type=submit class="btn btn-info btn-fill btn-wd checkout" id="{{item.id_room}}" title="{{ language['change_state'] }}">Check-out</button>
             <label for="rg-from">Ab: </label>
             <div class="form-group">
               <input type="text" id="rg-from" name="rg-from" value="" class="form-control" required>
@@ -116,38 +116,57 @@
     </div>
   </div>
 
+  {% include 'components/scripts.html' %}
 
-<script>
-    btn_checkin = document.getElementsByClassName('btn-success')
-    btn_checkout = document.getElementsByClassName('btn-info')
-
-//     for(var item of btn_checkin){
-//       item.addEventListener('click', (e) =>{
-//       let t = e.target;
-//
-//       var id_to_send = t.id;
-//       window.location = '/rooms/checkin?id=' + id_to_send
-//   })
-// };
-//     for(var item of btn_checkout){
-//       item.addEventListener('click', (e) =>{
-//         let t = e.target;
-//
-//         var id_to_send = t.id;
-//         window.location = '/rooms/checkout?id=' + id_to_send
-// });
-// }
+  <script type="text/javascript">
 
 $(document).ready(function(){
 
     demo.initChartist();
 
-    if ('{{error}}' == 'no_guests'){
-      $.notify("Hospede não encontrado", 'error');
-    }
-    if ('{{error}}' == 'success'){
-      $.notify("Checkin realizado com sucesso", 'success');
-    }
+    btn_checkin = document.getElementsByClassName('checkin')
+    btn_checkout = document.getElementsByClassName('btn-info')
+
+    for(var item of btn_checkin){
+      item.addEventListener('click', (e) =>{
+      let t = e.target;
+      var id_to_send = t.value;
+      var txt_val = t.parentElement.children[2].firstElementChild.value;
+
+      fetch('/rooms/checkin', {
+          method: 'post',
+          credentials: 'include',
+          body: JSON.stringify({
+              'id': id_to_send,
+              'name': txt_val
+          }),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+      }).then(response => response.json())
+          .then(json => {
+            console.log(json)
+            elem = document.getElementById(json['id'])
+            if(json['error'] == 'success'){
+              elem.setAttribute("class", "btn btn-info btn-fill btn-wd checkout")
+              elem.innerHTML = "Check-out"
+              $.notify("Atualizado com sucesso!", 'success');
+            }
+            else{
+              $.notify(
+                "Hospede não existe!",
+                'error',
+                {position: "right top" }
+              );
+            }
+
+          })
+          .catch(err => { console.log(err) });
+
+
+  })
+};
 
 });
 

@@ -6,7 +6,8 @@ from flask import (
     render_template,
     request,
     session,
-    url_for
+    url_for,
+    jsonify
 )
 from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_resident_by_name,
@@ -44,14 +45,13 @@ def view_rooms():
 @app.route('/checkin', methods=['POST'])
 @login_required
 def post_checkin():
-    resident_name = request.form.get('rg-form')
-    room_number = request.form.get('id_btn')
-
-    update_room_state(room_number, 'Ocupado')
+    resident_name = request.json.get('name')
+    room_number = request.json.get('id')
 
     resident = query_resident_by_name(resident_name)
 
     if resident:
+        update_room_state(room_number, 'Ocupado')
         new_account = create_new_account(
             resident=resident_name,
             room=query_room_by_room_number(room_number),
@@ -60,8 +60,11 @@ def post_checkin():
             status='Não pago',
             value=0.0
         )
-        return redirect(url_for('rooms.view_rooms', error='success'))
-    return redirect(url_for('rooms.view_rooms', error='no_guests'))
+        return jsonify({"error": 'success',
+                        "id": room_number})
+    return jsonify({"error": 'no_guests',
+                    "id": room_number})
+
 
 
 @app.route('/checkout', methods=['GET'])
