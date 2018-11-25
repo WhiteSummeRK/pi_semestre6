@@ -10,27 +10,28 @@ import datetime
 from sqlalchemy import update
 
 def query_insert_order(json):
-    order = Order(
-        id_resident=json['id_resident'],
-        id_room=json['id_room'],
-        date=str(datetime.datetime.utcnow()),
-        status='0',
-        total_value=json['unit_value']
-    )
-    session.add(order)
-    session.commit()
-    session.query_property()
+    for item in json['service']:
+        order = Order(
+            id_resident=int(json['id_resident']),
+            id_room=int(json['id_room']),
+            date=str(datetime.datetime.utcnow()),
+            status='0',
+            total_value=float(item['unit_value'])
+        )
+        session.add(order)
+        session.commit()
+        session.query_property()
 
-    item_order = ItemOrder(
-    id_order =order.id_order,
-    id_service = json['id_service'],
-    id_employee = 1,
-    amount = str(json['qtde']), #parabéns pra quem modelou isso como varchar no banco
-    value =int(json['unit_value'])*float(json['qtde']),
-    status = 0)
-    session.add(item_order)
-    session.commit()
-    session.query_property()
+        item_order = ItemOrder(
+        id_order =order.id_order,
+        id_service = int(item['id_service']),
+        id_employee = 1,
+        amount = str(item['qtde']), #parabéns pra quem modelou isso como varchar no banco
+        value =int(item['unit_value'])*float(item['qtde']),
+        status = 0)
+        session.add(item_order)
+        session.commit()
+        session.query_property()
 
 def query_user(*, username: str, pwd: str):
     """Busca usuarios no banco de dados através do nome e senha"""
