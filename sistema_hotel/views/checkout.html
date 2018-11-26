@@ -45,20 +45,19 @@
                             <h3 class="title">Realizar checkout do quarto Nº {{ room_number }}</h3>
                         </div>
                         <div class="content">
-                            <form method="POST" action="/rooms/checkout" name="usuarios">
                                 <div class="form-group">
                                   <div class="row">
                                     <div class="col-md-4">
-                                      <h3>Valor a pagar: R$ {{ account.value }}</h3>
+                                      <h3 id="money">Valor a pagar: R$ {{ account.value }}</h3>
                                       <img src="../assets/img/money_icon.png" alt="{{account.value}}" height="100" width="100">
                                     </div>
                                     <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                      <h3>Status: {{ account.status }}</h3>
+                                      <h3 id="status_msg">Status: {{ account.status }}</h3>
                                       {% if account.status == "Pago" %}
-                                      <img src="../assets/img/correct_icon.png" alt="Payed" height="42" width="42">
+                                      <img src="../assets/img/correct_icon.png" id="icon" alt="Payed" height="42" width="42">
                                       {% else %}
-                                      <img src="../assets/img/negative_icon.png" alt="Pague o aluguel" height="42" width="42">
+                                      <img src="../assets/img/negative_icon.png" id="icon" alt="Pague o aluguel" height="42" width="42">
                                       {% endif %}
                                     </div>
                                   </div>
@@ -85,12 +84,11 @@
 
                                 </div>
                                 <div class="text-center">
-                                  <button type="button" class="btn btn-info btn-fill btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                  <button type="button" class="btn btn-info btn-fill btn-lg" id="btn_checkout" data-toggle="button" aria-pressed="false" autocomplete="off">
                                     Checkout Guest
                                   </button>
                                 </div>
                                 <div class="clearfix"></div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -101,6 +99,44 @@
     {% include 'components/scripts.html' %}
 
 <script>
+$(document).ready(function(){
+
+    demo.initChartist();
+
+});
+
+checkout = document.getElementById('btn_checkout')
+money = document.getElementById('money')
+status_msg = document.getElementById('status_msg')
+icon = document.getElementById('icon')
+
+checkout.addEventListener('click', (e) =>{
+let t = e.target;
+
+fetch('/rooms/checkout', {
+  method: 'post',
+  credentials: 'include',
+  body: JSON.stringify({
+      'id': "{{ room_number }}"
+  }),
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+  },
+}).then(response => response.json())
+  .then(json => {
+    if (json['error'] == 'success'){
+      money.innerHTML = "Valor a pagar: R$ 0.0"
+      status_msg.innerHTML = "Status: Pago"
+      icon.setAttribute("src", "../assets/img/correct_icon.png")
+      $.notify("Checkout efetuado com sucesso!", 'success');
+    }
+    else{
+      $.notify("Este quarto não está ocupado, Impossivel fazer o checkout!", 'error');
+    }
+  })
+  .catch(err => { console.log(err) });
+})
 </script>
 
 </body>

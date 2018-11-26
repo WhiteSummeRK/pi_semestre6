@@ -91,13 +91,11 @@ def view_checkout():
 @app.route('/checkout', methods=['POST'])
 @login_required
 def post_checkout():
-    try:
-        id = request.form.get("btn_checkout")
-
-        account = query_resident_account_by_room_number(id)
+    id = request.json.get("id")
+    account = query_resident_account_by_room_number(id)
+    if account.status == "Não Pago" and account.value > 0:
         update_account_status(id, "Pago")
         do_checkout_date(id)
         reset_account_value(id)
         return jsonify({"error": "success"})
-    except Exception as e:
-        return jsonify({"error": "error"})
+    return jsonify({"error": "error"})
