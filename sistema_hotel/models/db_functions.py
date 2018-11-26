@@ -138,6 +138,29 @@ def update_room_state(room_number, updade_to):
 def query_all_resident_accounts():
     return session.query(ResidentAccount).all()
 
+def query_resident_account_by_room_number(room_number):
+    return session.query(ResidentAccount).filter_by(id_room=room_number).first()
+
+
+def update_account_status(id, new_status):
+    state = update(ResidentAccount).where(ResidentAccount.id_room == id).\
+        values(status=new_status)
+    session.execute(state)
+    session.commit()
+
+def do_checkout_date(id):
+    date = update(ResidentAccount).where(ResidentAccount.id_room == id).\
+        values(closed=datetime.now())
+    session.execute(date)
+    session.commit()
+
+
+def reset_account_value(id):
+    reseted = update(ResidentAccount).where(ResidentAccount.id_room == id).\
+        values(value=0.0)
+    session.execute(reseted)
+    session.commit()
+
 
 def query_room_by_id(room_id):
     return session.query(Room).first()

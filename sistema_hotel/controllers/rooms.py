@@ -7,7 +7,8 @@ from flask import (
     request,
     session,
     url_for,
-    jsonify
+    jsonify,
+    abort
 )
 from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_resident_by_name,
@@ -19,7 +20,11 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_resident_by_id,
                                                query_room_by_id,
                                                query_all_busy_rooms,
-                                               query_all_free_rooms)
+                                               query_all_free_rooms,
+                                               query_resident_account_by_room_number,
+                                               update_account_status,
+                                               do_checkout_date,
+                                               reset_account_value)
 from flask_login import login_required, current_user
 from sistema_hotel.controllers.languages import messages
 
@@ -70,18 +75,29 @@ def post_checkin():
 @app.route('/checkout', methods=['GET'])
 @login_required
 def view_checkout():
-    # act_query = query_all_resident_accounts()
-    # acts = [act.id_resident for act in act_query]
-    # rooms = [rooms.id_room for rooms in act_query]
-    #
-    # users = [query_resident_by_id(item) for item in acts]
-    # all_rooms = [query_room_by_id(room_id) for room_id in rooms]
-
-    return render_template('Checkout.html', language=messages[session['languages']])
-
+    try:
+        id = request.args.get("btn_checkout")
+        account = query_resident_account_by_room_number(id)
+        res = query_resident_by_id(account.id_resident)
+        return render_template('checkout.html',
+                                language=messages[session['languages']],
+                                room_number=id,
+                                account=account,
+                                res=res,
+                                date=datetime.now())
+    except AttributeError as e:
+        abort(406)
 
 @app.route('/checkout', methods=['POST'])
 @login_required
 def post_checkout():
-    room = request.form.get('fake_input')
-    user = query_resident_by_room(int(room), 'Diogo')
+    try:
+        id = request.form.get("btn_checkout")
+
+        account = query_resident_account_by_room_number(id)
+        update_account_status(id, "Pago")
+        do_checkout_date(id)
+        reset_account_value(id)
+        return jsonify({"error": "success"})
+    except Exception as e:
+        return jsonify({"error": "error"})

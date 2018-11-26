@@ -36,72 +36,71 @@
     {% include 'components/sidebar.html' %}
     {% include 'components/topo.html' %}
 
-    <div id="page-content-wrapper">
-        <div class="container-fluid" style="text-align: center">
-            <h1 >Quartos ocupados</h1>
-        </div>
-    </div>
-    <div class="row">
-      {% for item in rooms %}
-        <div class="cards" style="width: 18rem;height: 9rem;margin-top: 120px;">
-            <img class="card-img-top" src="../assets/img/quarto.jpg">
-            <div class="card-body" style="background-color: white">
-                <h5 class="card-title">Quarto Nº {{item.number}}</h5>
-                <button href="#" id="teste" data-id="{{item.number}}" data-toggle="modal" data-target="#modal" class="btn btn-primary">Fazer Check-out</button>
-            </div>
-        </div>
-      {% endfor %}
-    </div>
-    <!-- Modal -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="card">
+                        <div class="header">
+                            <h3 class="title">Realizar checkout do quarto Nº {{ room_number }}</h3>
+                        </div>
+                        <div class="content">
+                            <form method="POST" action="/rooms/checkout" name="usuarios">
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-md-4">
+                                      <h3>Valor a pagar: R$ {{ account.value }}</h3>
+                                      <img src="../assets/img/money_icon.png" alt="{{account.value}}" height="100" width="100">
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                      <h3>Status: {{ account.status }}</h3>
+                                      {% if account.status == "Pago" %}
+                                      <img src="../assets/img/correct_icon.png" alt="Payed" height="42" width="42">
+                                      {% else %}
+                                      <img src="../assets/img/negative_icon.png" alt="Pague o aluguel" height="42" width="42">
+                                      {% endif %}
+                                    </div>
+                                  </div>
+                                  <hr>
+                                </div>
+                                <div class="form-group">
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                          <h4>Usuário: </h4>
+                                          <h3>{{ res.name }}</h3>
+                                          <h4>RG: </h4>
+                                          <h3>{{ res.rg }}</h3>
+                                          <h4>CPF: </h4>
+                                          <h3>{{ res.cpf }}</h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                          <h4>Data de abertuda: </h4>
+                                          <h3>{{ account.openned }}</h3>
+                                          <h4>Data de fechamento: </h4>
+                                          <h4>CPF: </h4>
+                                          <h3>{{ res.cpf }}</h3>
+                                  </div>
+                                </div>
 
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <form action='/check_out/' method='POST'>
-                <input type='hidden' name='fake_input' id='fake_input'>
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fazer Check-out</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <h5>
-                        <b>Hóspede:</b> Kauan Alves</h5>
-                    <h5>
-                        <b>Entrada:</b> 08/08/2018 às 14h00</h5>
-                    <h5>
-                        <b>Solicitações: </b>
-                    </h5>
-                    <ul>
-                        <li>Coca-Cola 250ml</li>
-                        <li>Água Mineral 500ml</li>
-                        <li>Picanha ao ponto</li>
-                    </ul>
-                    <div class="row" style="margin-left: 10%">
-                        <img src="../assets/img/pagamento.png" style="width: 50px;height: 50px;margin-right: 5px" />
-                        <h3> Saldo a pagar R$ 255,00</h3>
-                    </div>
-                    <div style="text-align: center">
-                        <button type="button" class="btn btn-success">Realizar Pagamento</button>
+                                </div>
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-info btn-fill btn-lg" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                    Checkout Guest
+                                  </button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Fazer Check-out</button>
-                </div>
-            <form>
             </div>
         </div>
     </div>
+
+    {% include 'components/scripts.html' %}
+
 <script>
-    var buttons = document.querySelectorAll("#teste")
-    buttons.forEach(function(item){
-      item.addEventListener('click', function(){
-        document.getElementById("fake_input").value = $(this).attr("data-id")
-        console.log(document.getElementById("fake_input").value)
-      })
-    })
 </script>
 
 </body>
