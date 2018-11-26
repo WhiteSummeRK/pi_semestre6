@@ -48,15 +48,23 @@
                                 <div class="form-group">
                                   <div class="row">
                                     <div class="col-md-4">
-                                      <h3 id="money">Valor a pagar: R$ {{ account.value }}</h3>
+                                      <h4 id="money">Valor a pagar: R$ {{ account.value }}</h4>
                                       <img src="../assets/img/money_icon.png" alt="{{account.value}}" height="100" width="100">
                                     </div>
-                                    <div class="col-md-4"></div>
                                     <div class="col-md-4">
-                                      <h3 id="status_msg">Status: {{ account.status }}</h3>
-                                      {% if account.status == "Pago" %}
+                                      <h4 id="act_status">Status da conta: {{ account.status }}<h4>
+                                      {% if account.status == "Aberto" %}
+                                      <img src="../assets/img/correct_icon.png" id="icon_2" alt="Payed" height="42" width="42">
+                                      {% else %}
+                                      <img src="../assets/img/negative_icon.png" id="icon_2" alt="Pague o aluguel" height="42" width="42">
+                                      {% endif %}
+                                    </div>
+                                    <div class="col-md-4">
+                                      {% if account.value == 0 %}
+                                      <h4 id="status_msg">Status do pagamento: Pago</h4>
                                       <img src="../assets/img/correct_icon.png" id="icon" alt="Payed" height="42" width="42">
                                       {% else %}
+                                      <h4 id="status_msg">Status do pagamento: Não Pago</h4>
                                       <img src="../assets/img/negative_icon.png" id="icon" alt="Pague o aluguel" height="42" width="42">
                                       {% endif %}
                                     </div>
@@ -109,6 +117,8 @@ checkout = document.getElementById('btn_checkout')
 money = document.getElementById('money')
 status_msg = document.getElementById('status_msg')
 icon = document.getElementById('icon')
+icon_2 = document.getElementById('icon_2')
+act_status = document.getElementById('act_status')
 
 checkout.addEventListener('click', (e) =>{
 let t = e.target;
@@ -127,8 +137,10 @@ fetch('/rooms/checkout', {
   .then(json => {
     if (json['error'] == 'success'){
       money.innerHTML = "Valor a pagar: R$ 0.0"
-      status_msg.innerHTML = "Status: Pago"
+      status_msg.innerHTML = "Status do pagamento: Pago"
+      act_status.innerHTML = "Status da conta: Fechado"
       icon.setAttribute("src", "../assets/img/correct_icon.png")
+      icon_2.setAttribute("src", "../assets/img/negative_icon.png")
       $.notify("Checkout efetuado com sucesso!", 'success');
     }
     else{

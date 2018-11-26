@@ -21,7 +21,7 @@ from sistema_hotel.models.db_functions import (query_all_residents,
                                                query_room_by_id,
                                                query_all_busy_rooms,
                                                query_all_free_rooms,
-                                               query_resident_account_by_room_number,
+                                               query_resident_account_by_room_id,
                                                update_account_status,
                                                do_checkout_date,
                                                reset_account_value)
@@ -54,16 +54,17 @@ def post_checkin():
     room_number = request.json.get('id')
 
     resident = query_resident_by_name(resident_name)
+    room = query_room_by_room_number(room_number)
 
     if resident:
         update_room_state(room_number, 'Ocupado')
         new_account = create_new_account(
-            resident=resident_name,
-            room=query_room_by_room_number(room_number),
+            resident=resident,
+            room=room,
             openned=datetime.now(),
             closed=datetime.now(),
-            status='Não pago',
-            value=0.0
+            status='Aberto',
+            value=room.daily_value
         )
         return jsonify({"error": 'success',
                         "id": room_number})
@@ -77,7 +78,8 @@ def post_checkin():
 def view_checkout():
     try:
         id = request.args.get("btn_checkout")
-        account = query_resident_account_by_room_number(id)
+        room = query_room_by_room_number(id)
+        account = query_resident_account_by_room_id(room.id_room)
         res = query_resident_by_id(account.id_resident)
         return render_template('checkout.html',
                                 language=messages[session['languages']],
@@ -92,10 +94,12 @@ def view_checkout():
 @login_required
 def post_checkout():
     id = request.json.get("id")
-    account = query_resident_account_by_room_number(id)
-    if account.status == "Não Pago" and account.value > 0:
-        update_account_status(id, "Pago")
-        do_checkout_date(id)
-        reset_account_value(id)
+    room = query_room_by_room_number(id)
+    account = query_resident_account_by_room_id(room.id_room)
+    if account.status == "Aberto":
+        update_account_status(account.id_account, "Fechado")
+        do_checkout_date(account.id_account)
+        reset_account_value(account.id_account)
+        update_room_state(room.number, "Livre")
         return jsonify({"error": "success"})
     return jsonify({"error": "error"})

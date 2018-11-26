@@ -88,7 +88,7 @@
         {% if item.status == 'Livre' %}
         <td>
           <div class="form-inline">
-            <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
+            <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" id="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
             <label for="rg-from" style="margin-left: 10px;">Hospede: </label>
             <div class="form-group">
               <input type="text" id="rg-from" name="rg-from" class="form-control number-{{item.number}}" required>
@@ -100,7 +100,7 @@
         {% if item.status == 'Ocupado' %}
         <td>
           <form class="form-inline" action="/rooms/checkout" action="get">
-            <button type=submit class="btn btn-info btn-fill btn-wd checkout" value="{{item.id_room}}" name="btn_checkout" title="{{ language['change_state'] }}">Check-out</button>
+            <button type=submit class="btn btn-info btn-fill btn-wd checkout" value="{{item.number}}" id="{{item.number}}" name="btn_checkout" title="{{ language['change_state'] }}">Check-out</button>
           </form>
         </td>
         {% endif %}
