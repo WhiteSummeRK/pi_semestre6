@@ -14,7 +14,7 @@ def query_insert_order(json):
         order = Order(
             id_resident=int(json['id_resident']),
             id_room=int(json['id_room']),
-            date=str(datetime.datetime.utcnow()),
+            date=str(datetime.utcnow()),
             status='0',
             total_value=float(item['unit_value'])
         )
