@@ -89,9 +89,9 @@
         <td>
           <div class="form-inline">
             <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" id="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
-            <label for="rg-from" style="margin-left: 10px;">Hospede: </label>
+            <label for="rg-from" style="margin-left: 10px;" id="{{item.number}}">Hospede: </label>
             <div class="form-group">
-              <input type="text" id="rg-from" name="rg-from" class="form-control number-{{item.number}}" required>
+              <input type="text" id="{{item.number}}" name="rg-from" class="form-control number-{{item.number}}" required>
             </div>
             <!-- rest of form -->
           </div>
@@ -150,6 +150,7 @@ $(document).ready(function(){
               elem.setAttribute("class", "btn btn-info btn-fill btn-wd checkout")
               elem.innerHTML = "Check-out"
               $.notify("Atualizado com sucesso!", 'success');
+
             }
             else{
               $.notify(

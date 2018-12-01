@@ -142,6 +142,7 @@ fetch('/rooms/checkout', {
       icon.setAttribute("src", "../assets/img/correct_icon.png")
       icon_2.setAttribute("src", "../assets/img/negative_icon.png")
       $.notify("Checkout efetuado com sucesso!", 'success');
+      window.location = '/rooms/'
     }
     else{
       $.notify("Este quarto não está ocupado, Impossivel fazer o checkout!", 'error');

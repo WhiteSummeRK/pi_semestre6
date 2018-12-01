@@ -4,7 +4,12 @@ from flask import (
     jsonify,
     request
 )
-from sistema_hotel.models.db_functions import query_services_names,query_outstanding,service_status,query_insert_order
+from sistema_hotel.models.db_functions import (query_services_names,
+                                               query_outstanding,
+                                               service_status,
+                                               query_insert_order,
+                                               update_account_value,
+                                               query_resident_account_by_room_id)
 
 app = Blueprint('service', __name__)
 
@@ -53,9 +58,13 @@ def status():
 
 @app.route('/insert_order', methods=['POST'])
 def insert_order():
+    result = {}
+    account = query_resident_account_by_room_id(request.json['id_room'])
     try:
-        result = {}
         content_order = request.json
+        order_cost = content_order['orderCost']
+        update_account_value(account.id_account, order_cost)
+
         query_insert_order(content_order)
         return jsonify({'status':True})
     except:

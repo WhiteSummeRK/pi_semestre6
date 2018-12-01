@@ -162,6 +162,12 @@ def reset_account_value(id):
     session.commit()
 
 
+def update_account_value(id, value_new):
+    state = update(ResidentAccount).where(ResidentAccount.id_account == id).\
+        values(value=(ResidentAccount.value+value_new))
+    session.execute(state)
+    session.commit()
+
 def query_room_by_id(room_id):
     return session.query(Room).filter_by(id_room=room_id).first()
 
