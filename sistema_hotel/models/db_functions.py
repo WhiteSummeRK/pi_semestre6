@@ -163,7 +163,7 @@ def reset_account_value(id):
 
 
 def query_room_by_id(room_id):
-    return session.query(Room).first()
+    return session.query(Room).filter_by(id_room=room_id).first()
 
 
 def query_resident_by_room(room_number, resident_name):

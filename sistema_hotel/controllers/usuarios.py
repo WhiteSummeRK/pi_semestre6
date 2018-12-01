@@ -46,11 +46,11 @@ def cadastrar_user():
     if senha != confirmarsenha:
         return redirect(url_for('usuarios.view_users', error='pwds'))
     if tipo == 'ADM':
-        save_employee(name=nome, rg=rg, cpf=cpf, phone=telefone, pwd=senha)
+        save_employee(username=nome, name=nome, rg=rg, cpf=cpf, phone=telefone, pwd=senha)
         return redirect(url_for('usuarios.view_users', error='emp_saved'))
 
     if tipo == 'Hóspede':
-        save_resident(username='ARRUMAR', rg=rg, cpf=cpf, phone=telefone, name=nome, pwd=senha)
+        save_resident(username=nome, rg=rg, cpf=cpf, phone=telefone, name=nome, pwd=senha)
         return redirect(url_for('usuarios.view_users', error='hos_saved'))
 
     return redirect(url_for('usuarios.view_users', error='selecionar_tipo'))
