@@ -9,7 +9,6 @@
 
     <title>Check-in</title>
 
-    {% include 'components/base.html' %}
     <script>
     </script>
 
@@ -17,11 +16,22 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {% include 'components/base.html' %}
 
 
 </head>
 
 <body>
+  <div class="wrapper">
+    <div id="page-content-wrapper">
+      <div class="container-fluid" style="text-align: center">
+        <h1>{{ language['sidebar_rooms'] }}</h1>
+      </div>
+    </div>
+    {% include 'components/sidebar.html' %}
+    <div class="main-panel">
+    {% include 'components/topo.html' %}
+
     <div class="pos-f-t">
         <div class="collapse" id="menu">
             <div class="bg-dark p-4">
@@ -34,83 +44,75 @@
                 <span class="navbar-toggler-icon"></span>
             </a>
         </nav>
-
     </div>
 
-    {% include 'components/topo.html' %}
-    {% include 'components/sidebar.html' %}
-
-    <div id="page-content-wrapper">
-        <div class="container-fluid" style="text-align: center">
-            <h1>{{ language['sidebar_rooms'] }}</h1>
-        </div>
-    </div>
-    <div class="content">
-    <div class="container">
-      <table class="table table-bordered">
-        <h2>{{ language['rooms_stab'] }}</h2>
-        <p>{{ language['filters_room'] }}</p>
-        <form action='/rooms/' method="get">
-          <div class="form-group">
-            <label class="radio-inline">
-                <input type="radio" name="rooms" value="free_rooms">
-                {{ language['filters_room_free'] }}
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="rooms" value="busy_rooms">
-                {{ language['filters_room_busy'] }}
-            </label>
-            <label class="radio-inline">
-                <input type="radio" checked name="rooms" value="all_rooms">
-                {{ language['filters_room_no_filter'] }}
-            </label>
-            <label class="radio-inline">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">{{ language['filter'] }}</button>
-            </label>
-          </div>
-        </form>
-        <thead>
-          <tr>
-            <th>{{ language['rooms_number'] }}</th>
-            <th>{{ language['floor'] }}</th>
-            <th>{{ language['daily'] }}</th>
-            <th>Status</th>
-            <th>{{ language['change'] }}</th>
-          </tr>
-        </thead>
-        <tbody>
-      {% for item in rooms %}
-      <tr>
-        <td>{{item.number}}</td>
-        <td>{{item.floor}}</td>
-        <td>R$ {{item.daily_value}}</td>
-        <td>{{item.status}}</td>
-        {% if item.status == 'Livre' %}
-        <td>
-          <div class="form-inline">
-            <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" id="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
-            <label for="rg-from" style="margin-left: 10px;" id="{{item.number}}">Hospede: </label>
+      <div class="content">
+      <div class="container">
+        <table class="table table-bordered">
+          <h2>{{ language['rooms_stab'] }}</h2>
+          <p>{{ language['filters_room'] }}</p>
+          <form action='/rooms/' method="get">
             <div class="form-group">
-              <input type="text" id="{{item.number}}" name="rg-from" class="form-control number-{{item.number}}" required>
+              <label class="radio-inline">
+                  <input type="radio" name="rooms" value="free_rooms">
+                  {{ language['filters_room_free'] }}
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" name="rooms" value="busy_rooms">
+                  {{ language['filters_room_busy'] }}
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" checked name="rooms" value="all_rooms">
+                  {{ language['filters_room_no_filter'] }}
+              </label>
+              <label class="radio-inline">
+                  <button type="submit" class="btn btn-info btn-fill btn-wd">{{ language['filter'] }}</button>
+              </label>
             </div>
-            <!-- rest of form -->
-          </div>
-        </td>
-        {% endif %}
-        {% if item.status == 'Ocupado' %}
-        <td>
-          <form class="form-inline" action="/rooms/checkout" action="get">
-            <button type=submit class="btn btn-info btn-fill btn-wd checkout" value="{{item.number}}" id="{{item.number}}" name="btn_checkout" title="{{ language['change_state'] }}">Check-out</button>
           </form>
-        </td>
-        {% endif %}
-      </tr>
-      {% endfor %}
-    </tbody>
-    </table>
+          <thead>
+            <tr>
+              <th>{{ language['rooms_number'] }}</th>
+              <th>{{ language['floor'] }}</th>
+              <th>{{ language['daily'] }}</th>
+              <th>Status</th>
+              <th>{{ language['change'] }}</th>
+            </tr>
+          </thead>
+          <tbody>
+        {% for item in rooms %}
+        <tr>
+          <td>{{item.number}}</td>
+          <td>{{item.floor}}</td>
+          <td>R$ {{item.daily_value}}</td>
+          <td>{{item.status}}</td>
+          {% if item.status == 'Livre' %}
+          <td>
+            <div class="form-inline">
+              <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" id="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
+              <label for="rg-from" style="margin-left: 10px;" id="{{item.number}}">Hospede: </label>
+              <div class="form-group">
+                <input type="text" id="{{item.number}}" name="rg-from" class="form-control number-{{item.number}}" required>
+              </div>
+              <!-- rest of form -->
+            </div>
+          </td>
+          {% endif %}
+          {% if item.status == 'Ocupado' %}
+          <td>
+            <form class="form-inline" action="/rooms/checkout" action="get">
+              <button type=submit class="btn btn-info btn-fill btn-wd checkout" value="{{item.number}}" id="{{item.number}}" name="btn_checkout" title="{{ language['change_state'] }}">Check-out</button>
+            </form>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+      </div>
     </div>
   </div>
-
+</div>
   {% include 'components/scripts.html' %}
 
   <script type="text/javascript">
