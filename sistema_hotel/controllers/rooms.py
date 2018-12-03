@@ -61,8 +61,8 @@ def post_checkin():
         new_account = create_new_account(
             resident=resident,
             room=room,
-            openned=datetime.now(),
-            closed=datetime.now(),
+            openned=datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
+            closed=datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
             status='Aberto',
             value=room.daily_value
         )
@@ -86,7 +86,7 @@ def view_checkout():
                                 room_number=id,
                                 account=account,
                                 res=res,
-                                date=datetime.now())
+                                date=datetime.now().strftime('%d/%m/%Y %H:%M:%S'))
     except AttributeError as e:
         abort(406)
 
