@@ -23,28 +23,13 @@
 
 <body>
   <div class="wrapper">
-    <div id="page-content-wrapper">
-      <div class="container-fluid" style="text-align: center">
-        <h1>{{ language['sidebar_rooms'] }}</h1>
-      </div>
-    </div>
     {% include 'components/sidebar.html' %}
     <div class="main-panel">
-    {% include 'components/topo.html' %}
-
-    <div class="pos-f-t">
-        <div class="collapse" id="menu">
-            <div class="bg-dark p-4">
-                <h4 class="text-white">Collapsed content</h4>
-                <span class="text-muted">Toggleable via the navbar brand.</span>
-            </div>
+      <div id="page-content-wrapper">
+        <div class="container-fluid" style="text-align: center">
+          {% include 'components/topo.html' %}
         </div>
-        <nav class="navbar navbar-dark bg-dark">
-            <a onclick="openNav()" class="btn btn-secondary" id="menu-toggle">
-                <span class="navbar-toggler-icon"></span>
-            </a>
-        </nav>
-    </div>
+      </div>
 
       <div class="content">
       <div class="container">
@@ -148,9 +133,14 @@ $(document).ready(function(){
           .then(json => {
             console.log(json)
             elem = document.getElementById(json['id'])
+            label = elem.nextElementSibling;
+            textbox = label.nextElementSibling.firstElementChild;
+
             if(json['error'] == 'success'){
               elem.setAttribute("class", "btn btn-info btn-fill btn-wd checkout")
               elem.innerHTML = "Check-out"
+              label.innerHTML = ""
+              textbox.setAttribute("type", "hidden")
               $.notify("Atualizado com sucesso!", 'success');
 
             }
