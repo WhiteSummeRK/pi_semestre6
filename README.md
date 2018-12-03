@@ -17,7 +17,7 @@
  * Cadastro de novos pedidos [ ] <br />
  * Fechamento de caixa [ ] <br />
  * Chat de atendimento (se der tempo) [ ] <br />
- * Implementação com mobile [ ] <br />
+
 
 ## Como Iniciar a Aplicação:
 
