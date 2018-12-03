@@ -55,10 +55,10 @@ def query_services_names():
     return session.query(Service).all()
 
 
-def save_resident(*, name: str, rg: str, cpf: str, phone: str, username: str, pwd: str):
+def save_resident(*, name: str, rg: str, cpf: str, phone: str, pwd: str):
     try:
         resident = Resident(
-            username=username,
+            username=name,
             name=name,
             rg=rg,
             cpf=cpf,
@@ -74,6 +74,7 @@ def save_resident(*, name: str, rg: str, cpf: str, phone: str, username: str, pw
 def save_employee(*, name: str, pwd: str, rg: str, cpf: str, phone: str):
         try:
             employee = Employee(
+                username=name,
                 name=name,
                 pwd=pwd,
                 rg=rg,
