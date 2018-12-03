@@ -104,7 +104,7 @@ def insert_orders():
     pedido1 = Order(
         id_resident=1,
         id_room=1,
-        date=datetime.now(),
+        date=datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
         status='0',
         total_value=199.00
     )
@@ -114,7 +114,7 @@ def insert_orders():
     pedido2 = Order(
         id_resident=1,
         id_room=1,
-        date=datetime.now(),
+        date=datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
         status='1',
         total_value=199.00
     )
@@ -124,7 +124,7 @@ def insert_orders():
     pedido3 = Order(
         id_resident=1,
         id_room=1,
-        date=datetime.now(),
+        date=datetime.now().strftime('%d/%m/%Y %H:%M:%S'),
         status='2',
         total_value=199.00
     )

@@ -11,7 +11,6 @@ from .controllers.mobile_api_services import app as Service
 from .controllers.rooms import app as rooms
 
 from .controllers.usuarios import app as usuarios
-from .controllers.residents import app as residents
 from .controllers.cadastro_hospede import app as cadastro_hospede
 from .controllers.cadastro_quartos import app as cadastro_quartos
 from .controllers.menu_principal import app as menu
@@ -37,7 +36,6 @@ app.register_blueprint(cadastro_hospede, url_prefix='/cadastro_hospede')
 app.register_blueprint(cadastro_quartos, url_prefix='/cadastro_quartos')
 app.register_blueprint(menu, url_prefix='/menu')
 app.register_blueprint(pedidos, url_prefix='/pedidos')
-app.register_blueprint(residents, url_prefix='/residents')
 
 
 

@@ -76,17 +76,20 @@
             <div class="form-inline">
               <button type="submit" class="btn btn-success btn-fill btn-wd checkin" value="{{item.number}}" id="{{item.number}}" name="id_btn" title="{{ language['change_state'] }}">Check-in</button>
               <label for="rg-from" style="margin-left: 10px;" id="{{item.number}}">Hospede: </label>
-              <div class="form-group">
-                <input type="text" id="{{item.number}}" name="rg-from" class="form-control number-{{item.number}}" required>
-              </div>
+                  <select class="form-control" id="{{item.number}}" name="rg-from" required>
+                    {% for item in residents %}
+                    <option>{{item.name}}</option>
+                    {% endfor %}
+                  </select>
               <!-- rest of form -->
             </div>
           </td>
           {% endif %}
           {% if item.status == 'Ocupado' %}
           <td>
-            <form class="form-inline" action="/rooms/checkout" action="get">
+            <form class="form-inline" action="/rooms/checkout" action="get" style="margin-bottom: 0px">
               <button type=submit class="btn btn-info btn-fill btn-wd checkout" value="{{item.number}}" id="{{item.number}}" name="btn_checkout" title="{{ language['change_state'] }}">Check-out</button>
+              <label for="rg-from" style="margin-left: 10px;" id="{{item.number}}">Hospede: </label>
             </form>
           </td>
           {% endif %}
@@ -105,6 +108,17 @@
 $(document).ready(function(){
 
     document.getElementById("rooms").setAttribute("class", "active")
+
+    Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+        for(var i = this.length - 1; i >= 0; i--) {
+            if(this[i] && this[i].parentElement) {
+                this[i].parentElement.removeChild(this[i]);
+            }
+        }
+    }
 
 
     demo.initChartist();
@@ -134,13 +148,13 @@ $(document).ready(function(){
             console.log(json)
             elem = document.getElementById(json['id'])
             label = elem.nextElementSibling;
-            textbox = label.nextElementSibling.firstElementChild;
+            textbox = label.nextElementSibling;
 
             if(json['error'] == 'success'){
               elem.setAttribute("class", "btn btn-info btn-fill btn-wd checkout")
               elem.innerHTML = "Check-out"
-              label.innerHTML = ""
-              textbox.setAttribute("type", "hidden")
+              textbox.remove();
+
               $.notify("Atualizado com sucesso!", 'success');
 
             }

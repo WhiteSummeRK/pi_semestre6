@@ -35,6 +35,8 @@ app = Blueprint('rooms', __name__)
 def view_rooms():
     error = request.args.get('error')
     types = request.args.get('rooms')
+    residents = query_all_residents()
+
     if types == 'free_rooms':
         rooms_query = query_all_free_rooms()
     elif types == 'busy_rooms':
@@ -45,7 +47,8 @@ def view_rooms():
     return render_template('rooms.html',
                            rooms=rooms_query,
                            language=messages[session['languages']],
-                           error=error)
+                           error=error,
+                           residents=residents)
 
 @app.route('/checkin', methods=['POST'])
 @login_required
