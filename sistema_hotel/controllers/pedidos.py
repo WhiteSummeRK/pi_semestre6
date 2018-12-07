@@ -31,7 +31,7 @@ def view():
     for item in orders:
         room = query_room_by_id(item.id_room)
         resident = query_resident_by_id(item.id_resident)
-        pedidos = service_status_2(item.id_resident, item.id_room)
+        pedidos = service_status_2(item.id_resident, item.id_order)
         payload.append([room.number,
                         resident.name,
                         room.floor,
@@ -40,6 +40,8 @@ def view():
                         item.status,
                         item.id_order,
                         pedidos]) # NOQA
+        print(payload)
+    print(payload)
     return render_template('services.html',
                            language=messages[session['languages']],
                            payload=payload)

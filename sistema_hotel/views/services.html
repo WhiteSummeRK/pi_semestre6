@@ -78,11 +78,7 @@
                 <td>
                   {% for item in item[7] %}
                     <label>Item Nº {{loop.index}}: {{item[1]}} </label>
-                    {% if item[2] == "2" %}
-                      <img src="../assets/img/correct_icon.png" alt="Payed" height="20" width="20">
-                    {% else %}
-                      <img src="../assets/img/negative_icon.png" alt="Payed" height="20" width="20">
-                    {% endif %}
+
                     <br>
                   {% endfor%}
                 </td>
