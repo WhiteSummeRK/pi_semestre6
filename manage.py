@@ -14,7 +14,7 @@ manager = Manager(app)
 
 @manager.command
 def runserver():
-    app.run(debug=True)
+    app.run(debug=True, host="192.168.0.4", port=5000)
 
 @manager.command
 def insertions():

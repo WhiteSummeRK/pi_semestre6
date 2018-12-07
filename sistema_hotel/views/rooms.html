@@ -130,14 +130,15 @@ $(document).ready(function(){
       item.addEventListener('click', (e) =>{
       let t = e.target;
       var id_to_send = t.value;
-      var txt_val = t.parentElement.children[2].firstElementChild.value;
+      var real_one = t.parentElement.children[2]
+      var real_name = real_one.selectedOptions[0].value
 
       fetch('/rooms/checkin', {
           method: 'post',
           credentials: 'include',
           body: JSON.stringify({
               'id': id_to_send,
-              'name': txt_val
+              'name': real_name
           }),
           headers: {
               'Accept': 'application/json',

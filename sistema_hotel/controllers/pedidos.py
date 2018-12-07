@@ -16,7 +16,8 @@ from sistema_hotel.models.db_functions import (query_all_orders,
                                                query_room_by_id,
                                                query_resident_by_id,
                                                update_order_status,
-                                               query_order_by_id)
+                                               query_order_by_id,
+                                               service_status_2)
 
 
 app = Blueprint('pedidos', __name__)
@@ -30,8 +31,15 @@ def view():
     for item in orders:
         room = query_room_by_id(item.id_room)
         resident = query_resident_by_id(item.id_resident)
-        payload.append([room.number, resident.name, room.floor, item.total_value, item.date, item.status, item.id_order]) # NOQA
-
+        pedidos = service_status_2(item.id_resident, item.id_room)
+        payload.append([room.number,
+                        resident.name,
+                        room.floor,
+                        item.total_value,
+                        item.date,
+                        item.status,
+                        item.id_order,
+                        pedidos]) # NOQA
     return render_template('services.html',
                            language=messages[session['languages']],
                            payload=payload)
@@ -55,7 +63,15 @@ def alterar_pedidos():
     for item in orders:
         room = query_room_by_id(item.id_room)
         resident = query_resident_by_id(item.id_resident)
-        payload.append([room.number, resident.name, room.floor, item.total_value, item.date, item.status, item.id_order]) # NOQA
+        pedidos = service_status_2(item.id_resident, item.id_room)
+        payload.append([room.number,
+                        resident.name,
+                        room.floor,
+                        item.total_value,
+                        item.date,
+                        item.status,
+                        item.id_order,
+                        pedidos])
     return render_template('services.html',
                            language=messages[session['languages']],
                            payload=payload)
