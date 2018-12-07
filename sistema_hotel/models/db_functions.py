@@ -201,7 +201,7 @@ def service_status_2(id_user, id_order):
                           Service.name,Service.id_service,Service.description).join(ItemOrder,
                                                                                     Order.id_order==ItemOrder.id_order)\
         .join(Service,Service.id_service==ItemOrder.id_service).filter(Order.id_resident==id_user).filter(Order.id_order == id_order)
-    return set([(item[1], item[6], item[3]) for item in value])
+    return set([(item[1], item[6], item[3],item[4]) for item in value])
 
 
 def query_resident_by_id(id):

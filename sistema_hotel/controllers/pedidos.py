@@ -40,8 +40,7 @@ def view():
                         item.status,
                         item.id_order,
                         pedidos]) # NOQA
-        print(payload)
-    print(payload)
+
     return render_template('services.html',
                            language=messages[session['languages']],
                            payload=payload)
